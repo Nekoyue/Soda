@@ -34,7 +34,8 @@ dependencies {
     implementation(npm("react-share"))
     implementation(npm("react-markdown"))
 
-
+    //Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:1.3.3")
 }
 
 
