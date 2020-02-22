@@ -1,8 +1,11 @@
 package pages.post
 
+import PostStyles
 import react.*
+import styled.css
+import styled.styledDiv
 
-data class MetadataInfo(val title: String) // It stores all the metadata information of a post.
+data class MetadataInfo(val title: String) // It stores all the metadata information of a post. TODO
 
 interface MetadataProps : RProps {
     var metadata: MetadataInfo
@@ -12,7 +15,13 @@ interface MetadataProps : RProps {
 class Metadata : RComponent<MetadataProps, RState>() {
 
     override fun RBuilder.render() {
-        +props.metadata.title
+        styledDiv {
+            css {
+                +PostStyles.metadata
+            }
+
+            +props.metadata.title // TODO
+        }
     }
 }
 

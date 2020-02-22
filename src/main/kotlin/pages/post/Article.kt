@@ -1,6 +1,9 @@
 package pages.post
 
+import PostStyles
 import react.*
+import styled.css
+import styled.styledDiv
 
 @JsModule("react-markdown")
 @JsNonModule
@@ -20,8 +23,14 @@ interface ArticleProps : RProps {
 
 class ArticleApp : RComponent<ArticleProps, RState>() {
     override fun RBuilder.render() {
-        ReactMarkdown {
-            attrs.source = props.article.markdown
+        styledDiv {
+            css {
+                +PostStyles.article
+            }
+
+            ReactMarkdown {
+                attrs.source = props.article.markdown
+            }
         }
     }
 }

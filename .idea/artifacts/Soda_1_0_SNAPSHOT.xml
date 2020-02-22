@@ -1,8 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="Soda-1.0-SNAPSHOT">
     <output-path>$PROJECT_DIR$/build/libs</output-path>
-    <root id="archive" name="Soda-1.0-SNAPSHOT.jar">
-      <element id="module-output" name="moe.yue.soda.Soda.main" />
-    </root>
+    <root id="archive" name="Soda-1.0-SNAPSHOT.jar" />
   </artifact>
 </component>

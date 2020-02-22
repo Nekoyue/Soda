@@ -1,5 +1,5 @@
 plugins {
-    id("org.jetbrains.kotlin.js") version "1.3.70-eap-184"
+    id("org.jetbrains.kotlin.js") version "1.3.70-eap-274"
 }
 
 group = "moe.yue.soda"
@@ -33,6 +33,7 @@ dependencies {
     //Components
     implementation(npm("react-share"))
     implementation(npm("react-markdown"))
+    implementation(npm("react-syntax-highlighter"))
 
     //Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:1.3.3")

@@ -1,5 +1,6 @@
 package pages
 
+import PostStyles
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.await
 import kotlinx.coroutines.launch
@@ -8,7 +9,8 @@ import pages.post.MetadataInfo
 import pages.post.article
 import pages.post.metadata
 import react.*
-import react.dom.div
+import styled.css
+import styled.styledDiv
 import kotlin.browser.window
 
 data class PostData(val metadata: MetadataInfo, val article: ArticleData) // It stores all information of one post.
@@ -18,7 +20,7 @@ interface PostProps : RProps {
 }
 
 interface PostState : RState {
-    var ok: Boolean // Redirect to 404 if false.
+    var ok: Boolean // Redirect to 404 if false. TODO
     var post: PostData
 }
 
@@ -35,16 +37,20 @@ class Post : RComponent<PostProps, PostState>() {
     }
 
     override fun RBuilder.render() {
-        div {
+        styledDiv {
+            css {
+                +PostStyles.root
+            }
+
             metadata {
                 metadata = state.post.metadata
             }
-        }
 
-        div {
+
             article {
                 article = state.post.article
             }
+
         }
     }
 }
@@ -55,7 +61,7 @@ fun RBuilder.post(handler: PostProps.() -> Unit): ReactElement {
     }
 }
 
-// To be finished
+// TODO
 private suspend fun parsePost(url: String): PostData {
     val raw = window.fetch(url).await().text().await().toString()  // Coroutine
 
