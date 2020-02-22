@@ -1,1 +1,0 @@
-./src/main/resources/posts/Test.md: My first blog post  
