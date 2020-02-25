@@ -16,7 +16,6 @@ interface urlProps : RProps {
 
 class Router : RComponent<RProps, RState>() {
     override fun RBuilder.render() {
-
         browserRouter {
             switch {
                 route("/", Index::class, exact = true)

@@ -20,7 +20,7 @@ interface PostProps : RProps {
 }
 
 interface PostState : RState {
-    var ok: Boolean // Redirect to 404 if false. TODO
+    var ok: Boolean // Redirect to 404 if false. TODO: to be deleted.
     var post: PostData
 }
 
@@ -39,7 +39,7 @@ class Post : RComponent<PostProps, PostState>() {
     override fun RBuilder.render() {
         styledDiv {
             css {
-                +PostStyles.root
+                +PostStyles.post
             }
 
             metadata {
