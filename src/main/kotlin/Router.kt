@@ -9,6 +9,7 @@ import react.RState
 import react.router.dom.browserRouter
 import react.router.dom.route
 import react.router.dom.switch
+import kotlin.browser.window
 
 interface urlProps : RProps {
     var name: String
@@ -17,6 +18,12 @@ interface urlProps : RProps {
 class Router : RComponent<RProps, RState>() {
     override fun RBuilder.render() {
         browserRouter {
+            header {
+                tabs = TemporaryData.tabs
+                current = TemporaryData.tabs
+                    .indexOfFirst { it.url == window.location.pathname } // TODO: it's inefficient and will be replaced.
+            }
+
             switch {
                 route("/", Index::class, exact = true)
                 route<urlProps>("${TemporaryData.postsRoot}:name", exact = true) { props ->
@@ -32,6 +39,8 @@ class Router : RComponent<RProps, RState>() {
                 }
                 route("", Error404::class)
             }
+
+            footer()
         }
     }
 }

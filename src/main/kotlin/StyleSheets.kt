@@ -32,6 +32,7 @@ object HeaderStyles : StyleSheet("Header", isStatic = true) {
     val header by css {
 //        position = Position.fixed // Uncomment will cause header always float at the top.
         padding(left = 15.pct, right = 15.pct)
+        display = Display.flex
         backgroundColor = Color.white
         height = 60.px
         fontSize = 1.6.rem
