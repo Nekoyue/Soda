@@ -6,7 +6,7 @@ import styled.styledDiv
 
 data class TabData(val title: String, val url: String)
 
-interface HeaderProps : RProps {
+external interface HeaderProps : RProps {
     var tabs: List<TabData>
     var current: Int // The index of current selected tab
 }
@@ -39,7 +39,7 @@ fun RBuilder.header(handler: HeaderProps.() -> Unit): ReactElement {
 }
 
 
-interface TabProps : RProps {
+external interface TabProps : RProps {
     var text: String
     var url: String
     var selected: Boolean // True if the tab is currently selected.
@@ -72,7 +72,7 @@ private fun RBuilder.tab(text: String, url: String, selected: Boolean): ReactEle
 }
 
 
-private interface TitleProps : RProps {
+private external interface TitleProps : RProps {
     var text: String
     var imgUrl: String
     var url: String

@@ -15,11 +15,11 @@ import kotlin.browser.window
 
 data class PostData(val metadata: MetadataInfo, val article: ArticleData) // It stores all information of one post.
 
-interface PostProps : RProps {
+external interface PostProps : RProps {
     var url: String
 }
 
-interface PostState : RState {
+external interface PostState : RState {
     var ok: Boolean // Redirect to 404 if false. TODO: to be deleted.
     var post: PostData
 }

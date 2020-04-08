@@ -11,7 +11,7 @@ import react.router.dom.route
 import react.router.dom.switch
 import kotlin.browser.window
 
-interface urlProps : RProps {
+external interface urlProps : RProps {
     var name: String
 }
 
