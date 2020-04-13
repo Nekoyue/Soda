@@ -1,6 +1,5 @@
-import pages.Error404
-import pages.Index
 import pages.error404
+import pages.index
 import pages.post
 import react.RBuilder
 import react.RComponent
@@ -13,38 +12,41 @@ import kotlin.browser.window
 
 // Router will handle the path of the url and display the corresponding page.
 
-external interface urlProps : RProps {
-    var name: String
-}
-
 class Router : RComponent<RProps, RState>() {
     override fun RBuilder.render() {
         browserRouter {
             header {
-                navigationTabs = TemporaryData.tabs
-                current = TemporaryData.tabs
+                navigationTabs = Config.tabs
+                current = Config.tabs
                     .indexOfFirst { it.url == window.location.pathname } // TODO: it's inefficient and will be replaced.
             }
 
             switch {
-                route("/", Index::class, exact = true)
-                route<urlProps>("${TemporaryData.postsRoot}:name", exact = true) { props ->
-                    val request = props.match.params.name // The requested url.
-                    val fullName = TemporaryData.shortUrl[request].also { }
-                        ?: request.takeIf { // Check if the request url is valid.
-                            TemporaryData.shortUrl.containsValue(request)
+                route("") {
+                    val path = window.location.pathname
+                    val fullName =
+                        if (Config.pages.containsKey(path)) { // The request already uses the full path name.
+                            path
+                        } else {
+                            Config.pages.filter { it.value.contains(path) }.keys.firstOrNull() // Change to full path name if using alternative path names.
                         }
 
-                    if (fullName == null) {
-                        error404()
-                    } else {
-                        post {
-                            url =
-                                "${TemporaryData.baseUrl}${TemporaryData.postsRoot}$fullName.md" //A temporary file for testing.
+                    println(fullName)
+                    when (fullName) {
+                        null -> {
+                            error404()
+                        }
+                        "/" -> {
+                            index()
+                        }
+                        else -> {
+                            post {
+                                url =
+                                    "${Config.baseUrl}${Config.resourcesFolder}$fullName.md" // The location of markdown file.
+                            }
                         }
                     }
                 }
-                route("", Error404::class)
             }
 
             footer()
