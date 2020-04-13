@@ -9,7 +9,6 @@ fun main() {
             css {
                 +RootStyles.root
             }
-
             router()
         }
     }

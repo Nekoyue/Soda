@@ -11,6 +11,8 @@ import react.router.dom.route
 import react.router.dom.switch
 import kotlin.browser.window
 
+// Router will handle the path of the url and display the corresponding page.
+
 external interface urlProps : RProps {
     var name: String
 }
@@ -19,7 +21,7 @@ class Router : RComponent<RProps, RState>() {
     override fun RBuilder.render() {
         browserRouter {
             header {
-                tabs = TemporaryData.tabs
+                navigationTabs = TemporaryData.tabs
                 current = TemporaryData.tabs
                     .indexOfFirst { it.url == window.location.pathname } // TODO: it's inefficient and will be replaced.
             }
@@ -27,8 +29,13 @@ class Router : RComponent<RProps, RState>() {
             switch {
                 route("/", Index::class, exact = true)
                 route<urlProps>("${TemporaryData.postsRoot}:name", exact = true) { props ->
-                    val fullName = TemporaryData.tinyUrl[props.match.params.name]
-                    if (fullName.isNullOrBlank()) {
+                    val request = props.match.params.name // The requested url.
+                    val fullName = TemporaryData.shortUrl[request].also { }
+                        ?: request.takeIf { // Check if the request url is valid.
+                            TemporaryData.shortUrl.containsValue(request)
+                        }
+
+                    if (fullName == null) {
                         error404()
                     } else {
                         post {

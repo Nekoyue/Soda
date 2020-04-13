@@ -4,10 +4,10 @@ import styled.css
 import styled.styledA
 import styled.styledDiv
 
-data class TabData(val title: String, val url: String)
+data class NavigationTabData(val title: String, val url: String)
 
 external interface HeaderProps : RProps {
-    var tabs: List<TabData>
+    var navigationTabs: List<NavigationTabData>
     var current: Int // The index of current selected tab
 }
 
@@ -23,13 +23,12 @@ class Header : RComponent<HeaderProps, RState>() {
                 css {
                     +HeaderStyles.navigation
                 }
-                props.tabs.forEachIndexed { index, it ->
-                    tab(it.title, it.url, index == props.current)
+                props.navigationTabs.forEachIndexed { index, it ->
+                    navigationTab(it.title, it.url, index == props.current)
                 }
             }
         }
     }
-
 }
 
 fun RBuilder.header(handler: HeaderProps.() -> Unit): ReactElement {
@@ -38,40 +37,7 @@ fun RBuilder.header(handler: HeaderProps.() -> Unit): ReactElement {
     }
 }
 
-
-external interface TabProps : RProps {
-    var text: String
-    var url: String
-    var selected: Boolean // True if the tab is currently selected.
-}
-
-private class Tab : RComponent<TabProps, RState>() {
-    override fun RBuilder.render() {
-        styledA { // This will be an <a> inside <a>, use of <div> will break the style.
-            css {
-                +HeaderStyles.navigationTab
-                if (props.selected) {
-                    +HeaderStyles.navigationTabSelected
-                }
-            }
-            routeLink(to = props.url) { // Unfortunately there is no function called styledRouteLink.
-                +props.text
-            }
-        }
-
-    }
-
-}
-
-private fun RBuilder.tab(text: String, url: String, selected: Boolean): ReactElement {
-    return child(Tab::class) { //TODO to be tested: this.
-        attrs.text = text
-        attrs.url = url
-        attrs.selected = selected
-    }
-}
-
-
+// Title
 private external interface TitleProps : RProps {
     var text: String
     var imgUrl: String
@@ -96,5 +62,38 @@ private fun RBuilder.title(text: String, imgUrl: String, url: String): ReactElem
         attrs.text = text
         attrs.imgUrl = imgUrl
         attrs.url = url
+    }
+}
+
+// Navigation tabs
+external interface NavigationTabProps : RProps {
+    var text: String
+    var url: String
+    var selected: Boolean // True if the tab is selected.
+}
+
+private class NavigationTab : RComponent<NavigationTabProps, RState>() {
+    override fun RBuilder.render() {
+        styledA { // This will be an <a> inside <a>, use of <div> can break the style. TODO simplify
+            css {
+                +HeaderStyles.navigationTab
+                if (props.selected) {
+                    +HeaderStyles.navigationTabSelected
+                }
+            }
+            routeLink(to = props.url) { // Unfortunately there is no function called styledRouteLink.
+                +props.text
+            }
+        }
+
+    }
+
+}
+
+private fun RBuilder.navigationTab(text: String, url: String, selected: Boolean): ReactElement {
+    return child(NavigationTab::class) { //TODO to be tested: this.
+        attrs.text = text
+        attrs.url = url
+        attrs.selected = selected
     }
 }

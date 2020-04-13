@@ -4,7 +4,7 @@ import kotlinx.css.properties.TextDecorationLine
 import kotlinx.css.properties.textDecoration
 import styled.StyleSheet
 
-// This file contains all the style sheets.
+// This file stores all the style sheets.
 
 object RootStyles : StyleSheet("Root", isStatic = true) {
     val root by css {
@@ -19,7 +19,7 @@ object RootStyles : StyleSheet("Root", isStatic = true) {
         fontFamily = "Lato, Arial, sans-serif"
     }
 
-    val titleFont by css {
+    val altFont by css {
         fontFamily = "Montserrat, Arial, sans-serif"
     }
 
@@ -30,7 +30,7 @@ object RootStyles : StyleSheet("Root", isStatic = true) {
 
 object HeaderStyles : StyleSheet("Header", isStatic = true) {
     val header by css {
-//        position = Position.fixed // Uncomment will cause header always float at the top.
+//        position = Position.fixed // Uncomment to keep header floating at the top.
         padding(left = 15.pct, right = 15.pct)
         display = Display.flex
         backgroundColor = Color.white

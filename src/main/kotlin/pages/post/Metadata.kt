@@ -5,7 +5,9 @@ import react.*
 import styled.css
 import styled.styledDiv
 
-data class MetadataInfo(val title: String) // It stores all the metadata information of a post. Perhaps better named as MetadataData(?). TODO
+// Metadata include information such as time created, author, etc. It shows above the article.
+
+data class MetadataInfo(val title: String) // It stores all the metadata information of a post. Perhaps better to be named as MetadataData(?). TODO
 
 external interface MetadataProps : RProps {
     var metadata: MetadataInfo

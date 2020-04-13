@@ -27,7 +27,7 @@ external interface PostState : RState {
 class Post : RComponent<PostProps, PostState>() {
     override fun PostState.init() {
         post = PostData(MetadataInfo("Loading"), ArticleData("Loading")) // Temporary initialized for testing.
-        val mainScope = MainScope() // Using kotlin coroutine.
+        val mainScope = MainScope() // Using kotlin coroutine to download the post.
         mainScope.launch {
             val parsedPost = parsePost(props.url)
             setState {
@@ -45,7 +45,6 @@ class Post : RComponent<PostProps, PostState>() {
             metadata {
                 metadata = state.post.metadata
             }
-
 
             article {
                 article = state.post.article

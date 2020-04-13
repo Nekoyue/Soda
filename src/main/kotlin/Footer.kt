@@ -15,7 +15,6 @@ class Footer : RComponent<RProps, RState>() {
             ReactMarkdown {
                 +TemporaryData.footerMarkdown
             }
-
         }
     }
 }
