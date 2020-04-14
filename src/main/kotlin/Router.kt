@@ -29,9 +29,9 @@ class Router : RComponent<RProps, RState>() {
                             path
                         } else {
                             Config.pages.filter { it.value.contains(path) }.keys.firstOrNull() // Change to full path name if using alternative path names.
+                                .also { window.history.pushState(null, "", it) } // Redirect to new url.
                         }
 
-                    println(fullName)
                     when (fullName) {
                         null -> {
                             error404()

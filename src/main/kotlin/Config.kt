@@ -11,7 +11,7 @@ object Config {
         "https://raw.githubusercontent.com/Nekoyue/nekoyue.github.io/master"
 
     val tabs = listOf(
-        NavigationTabData("Index", "/"),
+        NavigationTabData("Index", "/index"),
         NavigationTabData("Test", "/posts/Test"),
         NavigationTabData("Hello", "/posts/HelloWorld")
     )
