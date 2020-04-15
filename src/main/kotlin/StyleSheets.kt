@@ -6,12 +6,20 @@ import styled.StyleSheet
 
 // This file stores all the style sheets.
 
-object RootStyles : StyleSheet("Root", isStatic = true) {
-    val root by css {
+val GlobalStyles = CSSBuilder().apply {
+    body {
+        margin(0.px)
+        padding(0.px)
+    }
+}.toString()
+
+object ContainerStyles : StyleSheet("Container", isStatic = true) {
+    val container by css {
         boxSizing = BoxSizing.inherit
         display = Display.flex
         flexDirection = FlexDirection.column
-        height = 100.pct
+        justifyContent = JustifyContent.spaceBetween
+        minHeight = 100.vh
         +defaultFont
     }
 
@@ -45,6 +53,8 @@ object HeaderStyles : StyleSheet("Header", isStatic = true) {
 
     val navigation by css {
         marginLeft = LinearDimension.auto
+        display = Display.flex
+        flexDirection = FlexDirection.row
     }
 
     val navigationTab by css {
@@ -64,11 +74,23 @@ object FooterStyles : StyleSheet("Footer", isStatic = true) {
     }
 }
 
+object ContentStyles : StyleSheet("Content", isStatic = true) {
+    val content by css {
+        display = Display.flex
+        flexDirection = FlexDirection.column
+        flex(flexGrow = 1.0, flexShrink = 1.0, flexBasis = LinearDimension.auto)
+        alignItems = Align.center
+        justifyContent = JustifyContent.center
+        padding(all = 20.px)
+    }
+}
+
 
 object PostStyles : StyleSheet("Post", isStatic = true) {
     val post by css {
         margin(top = 20.px, bottom = 40.px)
-        flex(flexGrow = 1.0, flexShrink = 1.0, flexBasis = LinearDimension.auto)
+        width = 100.pct
+        maxWidth = 1000.px
     }
 
     val metadata by css {
@@ -76,9 +98,6 @@ object PostStyles : StyleSheet("Post", isStatic = true) {
     }
 
     val article by css {
-        margin(top = 0.px, bottom = 0.px, right = LinearDimension.auto, left = LinearDimension.auto)
-        maxWidth = 1000.px
-        width = 100.pct
-        padding(left = LinearDimension.auto, right = LinearDimension.auto)
+        margin(top = 0.px, right = LinearDimension.auto, bottom = 0.px, left = LinearDimension.auto)
     }
 }

@@ -1,7 +1,6 @@
 import react.*
 import react.router.dom.routeLink
 import styled.css
-import styled.styledA
 import styled.styledDiv
 
 data class NavigationTabData(val title: String, val url: String)
@@ -46,7 +45,7 @@ private external interface TitleProps : RProps {
 
 private class Title : RComponent<TitleProps, RState>() {
     override fun RBuilder.render() {
-        styledA { // Comments refer above.
+        styledDiv {
             css {
                 +HeaderStyles.title
             }
@@ -74,14 +73,14 @@ external interface NavigationTabProps : RProps {
 
 private class NavigationTab : RComponent<NavigationTabProps, RState>() {
     override fun RBuilder.render() {
-        styledA { // This will be an <a> inside <a>, use of <div> can break the style. TODO simplify
+        styledDiv {
             css {
                 +HeaderStyles.navigationTab
                 if (props.selected) {
                     +HeaderStyles.navigationTabSelected
                 }
             }
-            routeLink(to = props.url) { // Unfortunately there is no function called styledRouteLink.
+            routeLink(to = props.url) {
                 +props.text
             }
         }

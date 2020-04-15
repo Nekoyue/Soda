@@ -2,8 +2,7 @@
 
 object Config {
     // The folder stores all files images and files.
-//    const val resourcesFolder = "/resources/"
-    const val resourcesFolder = "/"
+    const val resourcesFolder = "/resources/"
 
     // The full url of where all files store.
     // Can leave empty if not using Github pages.
