@@ -29,7 +29,7 @@ class Router : RComponent<RProps, RState>() {
                 }
 
                 switch {
-                    route("") {
+                    route("") { // It represents all urls
                         val path = window.location.pathname
                         val fullName =
                             if (Config.pages.containsKey(path)) { // The request already uses the full path name.

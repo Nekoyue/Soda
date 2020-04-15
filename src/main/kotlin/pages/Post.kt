@@ -20,15 +20,15 @@ external interface PostProps : RProps {
 }
 
 external interface PostState : RState {
-    var ok: Boolean // Redirect to 404 if false. TODO: to be deleted.
+    var url: String
     var post: PostData
 }
 
 class Post : RComponent<PostProps, PostState>() {
-    override fun PostState.init() {
-        post = PostData(MetadataInfo("Loading"), ArticleData("Loading")) // Temporary initialized for testing.
+    private fun update() {
         val mainScope = MainScope() // Using kotlin coroutine to download the post.
         mainScope.launch {
+            setState { post = PostData(MetadataInfo("Loading"), ArticleData("Loading")) }
             val parsedPost = parsePost(props.url)
             setState {
                 post = parsedPost
@@ -36,7 +36,18 @@ class Post : RComponent<PostProps, PostState>() {
         }
     }
 
+    override fun PostState.init() {
+        post = PostData(MetadataInfo("Loading"), ArticleData("Loading")) // Temporary initialized for testing.
+        url = ""
+        update()
+    }
+
     override fun RBuilder.render() {
+        if (state.url != props.url) {
+            update()
+            setState { url = props.url }
+        }
+
         styledDiv {
             css {
                 +PostStyles.post
