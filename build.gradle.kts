@@ -34,7 +34,7 @@ dependencies {
     //Components
     implementation(npm("react-share"))
     implementation(npm("react-markdown"))
-    implementation(npm("react-syntax-highlighter"))
+    implementation(npm("prismjs")) // An alternative will be react-syntax-highlighter.
 
     //Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:1.3.5")

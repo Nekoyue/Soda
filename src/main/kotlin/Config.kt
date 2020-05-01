@@ -1,4 +1,5 @@
 // This file stores all configurations.
+// TODO: load configurations from an external Config.kts file, having no idea on how to implement it.
 
 object Config {
     // The folder stores all files images and files.
