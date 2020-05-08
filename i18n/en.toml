@@ -25,12 +25,12 @@ other = "Oops, page not found…"
 # posts/single.html
 #
 [readingTime]
-one   = "One minute"
+one   = "1 minute"
 other = "{{ .Count }} minutes"
 
 [tableOfContents]
 other = "Table of Contents"
 
 [wordCount]
-one   = "One Word"
-other = "{{ .Count }} Words"
+one   = "1 word"
+other = "{{ .Count }} words"

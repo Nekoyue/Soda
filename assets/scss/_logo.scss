@@ -4,7 +4,7 @@
   text-decoration: none;
   font-weight: bold;
   font-display: auto;
-  font-family: monospace, monospace;
+  font-family: Menlo, monospace;
 
   img {
     height: 44px;
@@ -12,10 +12,6 @@
 
   &__mark {
     margin-right: 5px;
-  }
-
-  &__text {
-    font-size: 1.125rem;
   }
 
   &__cursor {
@@ -30,14 +26,20 @@
 
   @media (prefers-reduced-motion: reduce) {
     &__cursor {
-        animation: none;
+      animation: none;
     }
   }
 
 }
 
 @keyframes cursor {
-  0% { opacity: 0; }
-  50% { opacity: 1; }
-  100% { opacity: 0; }
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

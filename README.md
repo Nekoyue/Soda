@@ -1,4 +1,4 @@
-# Hello Friend NG
+# Hello Friend NG Kai
 
 ![Hello Friend NG](https://dsh.re/2bd45)
 

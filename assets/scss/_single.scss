@@ -17,7 +17,7 @@
 
   &-title {
     font-size: 2.625rem;
-    margin: 0 0 20px;
+    margin: 0 0 0;
 
     @media #{$media-size-phone} {
       font-size: 2rem;
@@ -32,16 +32,13 @@
     display: block;
     margin-bottom: 20px;
     font-size: 1rem;
-    opacity: .5;
+    opacity: .7;
 
     a {
       text-decoration: none;
     }
   }
 
-  &-content {
-    margin-top: 30px;
-  }
 
   &-cover {
     border-radius: 8px;
@@ -56,7 +53,7 @@
   }
 
   &-info {
-    margin-top: 30px;
+    margin-top: 0;
     font-size: .8rem;
     line-height: normal;
     @include dimmed;
@@ -70,7 +67,7 @@
     }
 
     svg {
-      margin-right: .8em;
+      margin-right: .4em;
     }
 
     .tag {

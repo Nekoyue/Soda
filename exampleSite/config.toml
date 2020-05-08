@@ -1,5 +1,5 @@
 baseURL = "https://example.com"
-title   = "Hello Friend NG"
+title   = "Hello Friend NG Kai"
 
 DefaultContentLanguage = "en"
 
@@ -58,7 +58,8 @@ disableHugoGeneratorInject = false
   keywords = ""
   images = [""]
 
-  homeSubtitle = "Hello Friend NG"
+  homeTitle    = "Hugo"
+  homeSubtitle = "Hello Friend NG Kai"
 
   # Prefix of link to the git commit detail page. GitInfo must be enabled.
   # gitUrl = ""
@@ -88,6 +89,7 @@ disableHugoGeneratorInject = false
     theme = "#252627"
 
   [params.logo]
+    logoMark     = ">"
     logoText     = "$ cd /home/"
     logoHomeLink = "/"
     # Set true to remove the logo cursor entirely.
@@ -120,12 +122,12 @@ disableHugoGeneratorInject = false
 
 [languages]
   [languages.en]
-    subtitle  = "Hello Friend NG Theme"
+    subtitle  = "Hello Friend NG Kai Theme"
     weight    = 1
     copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
 
   [languages.fr]
-    subtitle  = "Hello Friend NG Theme"
+    subtitle  = "Hello Friend NG Kai Theme"
     weight    = 2
     copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
 
