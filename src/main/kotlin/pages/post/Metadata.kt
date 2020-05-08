@@ -5,7 +5,7 @@ import react.*
 import styled.css
 import styled.styledDiv
 
-// Metadata include information such as time created, author, etc. It shows above the article.
+// Metadata include information like time created and last edited. It shows above the article.
 
 data class MetadataInfo(val title: String) // It stores all the metadata information of a post. Perhaps better to be named as MetadataData(?). TODO
 

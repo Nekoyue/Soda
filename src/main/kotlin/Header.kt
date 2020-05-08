@@ -39,7 +39,7 @@ fun RBuilder.header(handler: HeaderProps.() -> Unit): ReactElement {
 // Title
 private external interface TitleProps : RProps {
     var text: String
-    var imgUrl: String
+    var imgUrl: String?
     var url: String
 }
 
