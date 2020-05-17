@@ -1,9 +1,20 @@
 {{ $main := resources.Get "js/main.js" }}
-{{ $menu := resources.Get "js/menu.js" }}
+{{ $kotlinJs := resources.Get "js/kotlinJs.js" }}
+{{ $kotlinJsDev := resources.Get "js/kotlinJs-dev.js" }}
+{{ $devMode := resources.Get "js/devMode.js" }}
 {{ $prism := resources.Get "js/prism.js" }}
-{{ $theme := resources.Get "js/theme.js" }}
-{{ $secureJS := slice $main $menu $prism $theme | resources.Concat "bundle.js" | resources.Minify | resources.Fingerprint "sha512" }}
+
+{{ $secureJS := ""}}
+
+{{if $kotlinJs}}
+    {{ $secureJS = slice $kotlinJs $main $prism | resources.Concat "bundle.js" | resources.Minify | resources.Fingerprint "sha512" }}
+
+{{ else }}
+    {{ $secureJS = slice $kotlinJsDev $devMode $main $prism | resources.Concat "bundle.js" | resources.Minify | resources.Fingerprint "sha512" }}
+{{ end }}
+
 <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+
 
 {{- if .Site.GoogleAnalytics }}
     {{ template "_internal/google_analytics.html" . }}

@@ -4,14 +4,65 @@
   text-decoration: none;
   font-weight: bold;
   font-display: auto;
-  font-family: Menlo, monospace;
+  font-family: Menlo, Consolas, Monaco, Andale Mono, Ubuntu Mono, monospace;
 
   img {
     height: 44px;
   }
 
   &__mark {
-    margin-right: 5px;
+
+    &-color {
+      color: #00BB00;
+    }
+
+    .dark-theme &-color {
+      color: #5FFA68;
+    }
+
+    &-color-error {
+      color: #ff0000;
+    }
+
+    .dark-theme &-color-error {
+      color: #FF5555;
+    }
+  }
+
+  &__text {
+    &-color1 {
+      color: #00bbbb;
+    }
+
+    &-color2 {
+      color: #008cff;
+    }
+
+    &-color3 {
+      color: #ff0000;
+    }
+
+    &-color4 {
+      color: #bbbb00;
+    }
+  }
+
+  .dark-theme &__text {
+    &-color1 {
+      color: #55FFFF;
+    }
+
+    &-color2 {
+      color: #68C5FF;
+    }
+
+    &-color3 {
+      color: #FF5555;
+    }
+
+    &-color4 {
+      color: #FFFF55;
+    }
   }
 
   &__cursor {
@@ -22,6 +73,21 @@
     margin-left: 5px;
     border-radius: 1px;
     animation: cursor 1s infinite;
+  }
+
+  &__inputBar {
+    margin-left: 5px;
+    font-weight: 400;
+    white-space: pre;
+  }
+
+  &__outputBar{
+    font-family: Menlo, Consolas, Monaco, Andale Mono, Ubuntu Mono, monospace;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    width: 760px;
+    white-space: pre;
   }
 
   @media (prefers-reduced-motion: reduce) {

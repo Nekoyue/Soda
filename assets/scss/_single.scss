@@ -17,7 +17,7 @@
 
   &-title {
     font-size: 2.625rem;
-    margin: 0 0 0;
+    margin: 0 0 6px 0;
 
     @media #{$media-size-phone} {
       font-size: 2rem;
@@ -53,10 +53,17 @@
   }
 
   &-info {
+    user-select: none;
     margin-top: 0;
     font-size: .8rem;
     line-height: normal;
     @include dimmed;
+
+    .tab{
+      margin-right: .8em;
+      white-space: nowrap;
+      user-select: text;
+    }
 
     p {
       margin: .8em 0;
@@ -76,7 +83,13 @@
       &::before {
         content: "#"
       }
+
+      a:hover {
+        color: #999;
+        opacity: .9;
+      }
     }
+
 
     .feather {
       display: inline-block;
@@ -84,6 +97,78 @@
       width: 1em;
       height: 1em;
     }
+  }
+
+  .dark-theme &-info {
+    .tag {
+      a:hover {
+        color: #fff;
+        opacity: 1;
+      }
+    }
+  }
+
+  &-content {
+    h1 {
+      font-size: 2.125rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+    }
+
+    h1, h2 {
+      padding-bottom: .3em;
+      border-bottom: 1px dotted #dcdcdc;
+    }
+
+    a:hover {
+      color: #999;
+    }
+  }
+
+  .dark-theme &-content {
+    h1, h2 {
+      border-bottom: 1px dotted #4a4b50;
+    }
+
+    a:hover {
+      color: #fff;
+    }
+  }
+
+
+  &-anchor {
+    font-size: 100%;
+    line-height: 0.8;
+    float: left;
+    margin-left: -20px;
+    padding-right: 4px;
+    fill: rgba(255, 255, 255, 0);
+
+    &:hover {
+      fill: #999999;
+    }
+  }
+
+  .dark-theme &-anchor {
+    fill: rgba(255, 255, 255, 0);
+
+    &:hover {
+      fill: #dadee1;
+    }
+  }
+
+  h1:hover a, h2:hover a, h3:hover a, h4:hover a {
+    fill: #616161;
+  }
+
+  .dark-theme h1:hover a, h2:hover a, h3:hover a, h4:hover a {
+    fill: #999999;
   }
 
   .flag {

@@ -1,14 +1,21 @@
 {{ define "main" }}
 <main aria-role="main">
     <div>
-        <h1 style="margin-bottom: 0">{{ .Site.Params.homeTitle | safeHTML}}</h1>
+        {{- with .Site.Params.avatar }}
+        <div class="avatar">
+            <img class="avatar-img" src="{{ . }}">
+            <div class="avatar-overlay"></div>
+        </div>
+        {{- end }}
+
+        <h1 style="margin: 0 auto">{{ .Site.Params.homeTitle | safeHTML}}</h1>
 
         {{- with .Site.Params.homeSubtitle | safeHTML}}
         <p>{{.}}</p>
         {{- end }}
 
         {{- with .Site.Params.social }}
-        <div>
+        <div style="user-select: none;">
             {{ partial "social-icons.html" . }}
         </div>
         {{- end }}
