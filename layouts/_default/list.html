@@ -1,20 +1,24 @@
 {{ define "main" }}
-    <main class="posts">
-        <h1>{{ .Title }}</h1>
+<main class="posts">
+    <h1>{{ .Title }}</h1>
 
-        {{- if .Content }}
-            <div class="content">{{ .Content }}</div>
-        {{- end }}
+    {{- if .Content }}
+    <div class="content">{{ .Content }}</div>
+    {{- end }}
 
-        {{- range .Data.Pages.GroupByDate "2006" }}
-            <div class="posts-group">
-                <div class="post-year">{{ .Key }}</div>
+    {{- range .Data.Pages.GroupByDate "2006" }}
+    <div class="posts-group">
+        <div class="post-year">{{ .Key }}</div>
 
-                <ul class="posts-list">
-                    {{- range .Pages }}
-                        <li class="post-item">
-                            <a href="{{.Permalink}}">
-                                <span class="post-title">{{.Title}}</span>
+        <ul class="posts-list">
+            {{- range .Pages }}
+            <li class="post-item">
+                <a href="{{.Permalink}}">
+                    <span class="post-title">{{.Title}}</span>
+                    <span style="text-align: right">
+                                {{- range .Params.tags}}
+                                    <span class="post-tag">#{{.}}</span>
+                                {{ end }}
                                 <span class="post-day">
                                     {{ if .Site.Params.dateformShort }}
                                         {{ .Date.Format .Site.Params.dateformShort }}
@@ -22,11 +26,12 @@
                                         {{ .Date.Format "Jan 2"}}
                                     {{ end }}
                                 </span>
-                            </a>
-                        </li>
-                    {{- end }}
-                </ul>
-            </div>
-        {{- end }}
-    </main>
+                    </span>
+                </a>
+            </li>
+            {{- end }}
+        </ul>
+    </div>
+    {{- end }}
+</main>
 {{ end }}

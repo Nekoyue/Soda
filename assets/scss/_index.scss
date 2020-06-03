@@ -3,6 +3,7 @@
   height: 140px;
   width: 140px;
   margin: 0 auto;
+  cursor: pointer;
 
   &-img {
     border-radius: 50%;
@@ -21,8 +22,7 @@
     margin: 0 auto;
     width: 140px;
     height: 140px;
-    border: 5px solid #ffffff;
-    //padding: 10px;
+    border: 6px solid #ffffff;
   }
 
   &-overlay {
@@ -36,7 +36,7 @@
     width: 140px;
     height: 140px;
     padding: 0;
-    border: 0px solid #a3a3a3;
+    border: 0 solid #a3a3a3;
     transition: all 0.2s ease;
   }
 

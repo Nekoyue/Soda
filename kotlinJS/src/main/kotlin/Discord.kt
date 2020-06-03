@@ -1,4 +1,6 @@
-import org.w3c.dom.*
+import org.w3c.dom.Element
+import org.w3c.dom.NodeList
+import org.w3c.dom.get
 import kotlin.browser.document
 import kotlin.browser.window
 import kotlin.dom.addClass

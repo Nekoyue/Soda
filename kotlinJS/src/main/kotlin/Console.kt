@@ -94,7 +94,7 @@ fun console() {
                                     options.forEach { result += "$it    " }
                                     if (options.size > 1) {
                                         outputBar(result.trim())
-                                    }else{
+                                    } else {
                                         outputBar("")
                                     }
 
@@ -122,7 +122,7 @@ fun console() {
                                     outputBar(result.trim())
                                     if (options.size > 1) {
                                         outputBar(result.trim())
-                                    }else{
+                                    } else {
                                         outputBar("")
                                     }
 
@@ -164,7 +164,7 @@ fun console() {
                 }
 
                 13 -> { // Enter
-                    if (text!=""&&lastText!=text) lastText = text
+                    if (text != "" && lastText != text) lastText = text
                     nextText = ""
                     inputBar("")
                     when {

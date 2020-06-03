@@ -80,10 +80,6 @@
     .tag {
       margin-right: .5em;
 
-      &::before {
-        content: "#"
-      }
-
       a:hover {
         color: #999;
         opacity: .9;

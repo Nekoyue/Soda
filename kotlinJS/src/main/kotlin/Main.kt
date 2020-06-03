@@ -9,6 +9,7 @@ fun main() {
         theme()
         console()
         discord()
+        avatar()
         tmp = false
     }
 }

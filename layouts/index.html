@@ -2,16 +2,16 @@
 <main aria-role="main">
     <div>
         {{- with .Site.Params.avatar }}
-        <div class="avatar">
+        <div class="avatar" title="Frozen!">
             <img class="avatar-img" src="{{ . }}">
             <div class="avatar-overlay"></div>
         </div>
         {{- end }}
 
-        <h1 style="margin: 0 auto">{{ .Site.Params.homeTitle | safeHTML}}</h1>
+        <h1 class= "homeTitle" style="margin: 0 auto">{{ .Site.Params.homeTitle | safeHTML}}</h1>
 
         {{- with .Site.Params.homeSubtitle | safeHTML}}
-        <p>{{.}}</p>
+        <p class="homeSubtitle">{{.}}</p>
         {{- end }}
 
         {{- with .Site.Params.social }}
