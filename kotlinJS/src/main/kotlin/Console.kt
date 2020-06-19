@@ -3,12 +3,6 @@ import org.w3c.dom.events.MouseEvent
 import kotlin.browser.document
 import kotlin.browser.window
 
-val index = mapOf( // Manually sort this list thanks.
-        "" to listOf("about.md", "friends.md", "friends-2.md", "poi.md"),
-        "posts" to listOf("my-first-post.md"),
-        "posts2" to listOf("my-second-post.md", "my-third-post.md")
-)
-
 fun console() {
     val inputBar = document.querySelector(".logo__inputBar")!!
     fun inputBar(text: String) {

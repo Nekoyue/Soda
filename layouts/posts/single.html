@@ -90,10 +90,7 @@
             </div>
         {{ end }}
 
-        {{- if .Site.DisqusShortname }}
-            <div id="comments" class="thin">
-                {{ template "_internal/disqus.html" . }}
-            </div>
-        {{- end }}
+        <script defer src="https://cdn.commento.io/js/commento.js"></script>
+        <div id="commento"></div>
     </main>
 {{ end }}

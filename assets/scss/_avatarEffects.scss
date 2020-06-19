@@ -1,0 +1,60 @@
+.avatarEffects {
+  &-overlay {
+    &-fire {
+      border-color: #ffb6a8 !important;
+    }
+
+    &-ice {
+      border-color: #caeafc !important;
+    }
+  }
+
+  &-background {
+    &-fire {
+      background: linear-gradient(to bottom right, #ff9975, #db4f59);
+      background-size: 200% 200%;
+      transform: translateZ(0);
+      transition: all 0.2s ease;
+      animation: DynamicAnimationFire 8s ease infinite;
+      animation-delay: 0.2s;
+    }
+
+    &-ice {
+      background: linear-gradient(to bottom right, #00a1d2, #9bf1fc) ;
+      background-size: 200% 200% ;
+      transition: all 0.2s ease ;
+      transform: translateZ(0);
+      animation: DynamicAnimationIce 8s ease infinite;
+      animation-delay: 0.2s;
+    }
+  }
+
+  &-header{
+    &-fire{
+      background: #ff997530 !important;
+    }
+    &-ice{
+      background: #00bcd230 !important;
+      transition: all 0.4s ease;
+    }
+  }
+}
+
+// This animation is really CPU consuming.
+@keyframes DynamicAnimationFire {
+  0%{background-position:200% 200%;}
+  25%{background-position:100% 200%;}
+  40%{background-position:0 100%;}
+  65%{background-position:0 0;}
+  80%{background-position:-100% -100%;}
+  100%{background-position:-200% -200%;}
+}
+
+@keyframes DynamicAnimationIce {
+  0%{background-position:-200% -200%;}
+  25%{background-position:-100% -200%;}
+  50%{background-position:0 -100%;}
+  75%{background-position:0 0;}
+  80%{background-position:100% 100%;}
+  100%{background-position:200% 200%;}
+}
