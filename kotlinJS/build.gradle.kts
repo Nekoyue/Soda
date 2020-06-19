@@ -1,5 +1,5 @@
 plugins {
-    id("org.jetbrains.kotlin.js") version "1.3.72"
+    id("org.jetbrains.kotlin.js") version "1.4-M2"
 }
 
 group = "moe.yue.soda"
@@ -15,11 +15,10 @@ dependencies {
 }
 
 kotlin {
-    target {
-        browser {}
-
+    js {
+            browser {}
 //        produceExecutable()
-    }
+        }
 }
 
 task("buildApp").dependsOn("build").doLast {
