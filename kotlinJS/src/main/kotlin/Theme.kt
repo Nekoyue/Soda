@@ -35,9 +35,8 @@ fun darkTheme() {
 
 
 fun defaultTheme() {
-    if (isDark() || getTheme() == null) {
-        darkTheme()
-    } else {
-        lightTheme()
+    when {
+        isDark() -> darkTheme()
+        else -> lightTheme()
     }
 }

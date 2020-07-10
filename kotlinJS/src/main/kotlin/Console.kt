@@ -82,7 +82,6 @@ fun console() {
                                 }
                                 path.count { it == '/' } > 1 || !index.keys.contains(folder) -> outputBar("")
                                 else -> {
-                                    println("that")
                                     var result = ""
                                     val options = index[folder]?.filter { it.startsWith(file) } ?: listOf()
                                     options.forEach { result += "$it    " }

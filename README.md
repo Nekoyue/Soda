@@ -1,5 +1,7 @@
 # Hello Friend NG Kai
 
+This branch is a fork of [rhazdon/hugo-theme-hello-friend-ng](https://github.com/rhazdon/hugo-theme-hello-friend-ng)
+
 ![Hello Friend NG](https://dsh.re/2bd45)
 
 ## General informations

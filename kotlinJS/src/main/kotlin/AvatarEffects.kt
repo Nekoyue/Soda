@@ -1,4 +1,5 @@
 import kotlin.browser.document
+import kotlin.browser.window
 import kotlin.dom.addClass
 import kotlin.dom.removeClass
 
@@ -20,7 +21,8 @@ fun avatar() {
         overlay?.addClass("avatarEffects-overlay-fire")
         root?.addClass("avatarEffects-background-fire")
         header?.addClass("avatarEffects-header-fire")
-        text?.innerHTML = originalText.replace("right here!", "in <span style=\"color: #6c0000; font-weight: 600\">fire!</span>")
+//        text?.innerHTML = originalText.replace("right here!", "in <span style=\"color: #6c0000; font-weight: 600\">fire!</span>")
+        text?.innerHTML = "The destination is in <span style=\"color: #6c0000; font-weight: 600\">fire!</span>"
     }
 
     fun ice() {
@@ -32,7 +34,8 @@ fun avatar() {
             addClass("avatarEffects-background-ice")
         }
         header?.addClass("avatarEffects-header-ice")
-        text?.innerHTML = originalText.replace("right here!", "in <span style=\"color: #003e80; font-weight: 600\">ice!</span>")
+//        text?.innerHTML = originalText.replace("right here!", "in <span style=\"color: #003e80; font-weight: 600\">ice!</span>")
+        text?.innerHTML ="The destination is in <span style=\"color: #003e80; font-weight: 600\">ice!</span>"
     }
 
     fun reset() {
@@ -57,7 +60,10 @@ fun avatar() {
         when (state % 3) {
             0 -> fire()
             1 -> ice()
-            2 -> reset()
+            2 -> {
+                reset()
+                window.location.href = "/about/"
+            }
         }
         state++
     })
