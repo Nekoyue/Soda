@@ -4,7 +4,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 local.properties
-kotlin-js-store/yarn.lock
+kotlin-js-store/
 
 ### IntelliJ IDEA ###
 .idea/modules.xml

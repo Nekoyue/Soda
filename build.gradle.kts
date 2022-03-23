@@ -10,7 +10,6 @@ buildscript {
         gradlePluginPortal()
         mavenCentral()
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-        maven("https://maven.pkg.jetbrains.space/public/p/kotlinx-coroutines/maven")
     }
 }
 
@@ -28,6 +27,24 @@ repositories {
     maven("https://maven.pkg.jetbrains.space/public/p/kotlinx-coroutines/maven")
 }
 
+// For native builds
+val hostOs = with(System.getProperty("os.name")) {
+    when {
+        this == "Mac OS X" -> "macos"
+        startsWith("Win") -> "windows"
+        startsWith("Linux") -> "linux"
+        else -> error("Unsupported OS: $this")
+    }
+}
+
+var hostArch = with(System.getProperty("os.arch")) {
+    when (this) {
+        "x86_64", "amd64" -> "X64"
+        "aarch64" -> "Arm64"
+        else -> error("Unsupported arch: $this")
+    }
+}
+
 kotlin {
     jvm("desktop") {
         compilations.all {
@@ -41,26 +58,31 @@ kotlin {
         binaries.executable()
     }
 
-    macosX64("macos") {
-        binaries {
-            executable {
-                entryPoint = "main"
-                freeCompilerArgs += listOf(
-                    "-linker-option", "-framework", "-linker-option", "Metal"
-                )
+    if (hostOs == "macos") {
+        val targets = mutableListOf<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget>()
+
+        // TODO: Won't cross compile for now
+        // Cross compile may be possible when I figure out how to link libcurl for multiple architectures
+        val macosTargets = mutableListOf(macosX64(), macosArm64())
+        targets.addAll(macosTargets)
+
+        // TODO: build for iOS devices
+        // val iosTargets = mutableListOf(iosX64(), iosArm64())
+        // targets.addAll(iosTargets)
+
+        targets.forEach {
+            it.apply {
+                binaries.executable {
+                    entryPoint = "moe.yue.main"
+                    freeCompilerArgs += listOf(
+                        "-linker-option", "-framework", "-linker-option", "Metal",
+                        "-linker-option", "-framework", "-linker-option", "CoreText",
+                        "-linker-option", "-framework", "-linker-option", "CoreGraphics"
+                    )
+                }
             }
         }
     }
-//    macosArm64 {
-//        binaries {
-//            executable {
-//                entryPoint = "main"
-//                freeCompilerArgs += listOf(
-//                    "-linker-option", "-framework", "-linker-option", "Metal"
-//                )
-//            }
-//        }
-//    }
 
     sourceSets {
         val commonMain by getting {
@@ -86,21 +108,18 @@ kotlin {
         val jsMain by getting {
         }
 
-        val macosMain by getting {
-        }
+        val macosMain by creating { dependsOn(commonMain) }
 
-//        val nativeMain by creating {
-//            dependsOn(commonMain)
-//        }
-//        val macosMain by creating {
-//            dependsOn(nativeMain)
-//        }
-//        val macosX64Main by getting {
-//            dependsOn(macosMain)
-//        }
-//        val macosArm64Main by getting {
-//            dependsOn(macosMain)
-//        }
+        val macosX64Main by getting { dependsOn(macosMain) }
+
+        val macosArm64Main by getting { dependsOn(macosMain) }
+
+
+// TODO: build for iOS devices
+//
+//        val iosMain by creating { dependsOn(commonMain) }
+//        val iosX64Main by getting { dependsOn(iosMain) }
+//        val iosArm64Main by getting { dependsOn(iosMain) }
     }
 }
 
@@ -109,7 +128,7 @@ val distributionVersion = rootProject.version as String
 
 compose.desktop {
     application {
-        mainClass = "Main_desktopKt"
+        mainClass = "moe.yue.Main_desktopKt"
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = distributionName
@@ -129,8 +148,7 @@ compose.experimental {
 }
 
 compose.desktop.nativeApplication {
-    targets(kotlin.targets.getByName("macos"))
-//    targets(kotlin.targets.getByName("macosX64"))
+    targets(kotlin.targets.getByName("$hostOs$hostArch"))
     distributions {
         targetFormats(TargetFormat.Dmg)
         packageName = distributionName
