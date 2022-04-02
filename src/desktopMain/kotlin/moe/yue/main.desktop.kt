@@ -9,7 +9,7 @@ import androidx.compose.ui.window.singleWindowApplication
 
 fun main() =
     singleWindowApplication(
-        title = AppName,
+        title = AppTitle,
         state = WindowState(size = DpSize(800.dp, 800.dp))
     ) {
         App()

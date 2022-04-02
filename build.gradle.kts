@@ -106,7 +106,13 @@ kotlin {
         }
 
         val jsMain by getting {
+//            // for DOM runtime setup
+//            // currently using Skiko wasm runtime
+//            dependencies {
+//                implementation(compose.web.core)
+//            }
         }
+
 
         val macosMain by creating { dependsOn(commonMain) }
 

@@ -2,9 +2,7 @@ package moe.yue
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -85,15 +83,13 @@ fun InfoCard(
 ) {
     Surface(
         modifier = modifier
-            .height(45.dp)
-            .width(100.dp)
             .padding(5.dp)
             .clip(RoundedCornerShape(8.dp))
             .clickable(onClick = { onClick?.invoke() }),
         color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
     ) {
         Row {
-            Text(text, modifier = Modifier.padding(5.dp))
+            Text(text, modifier = Modifier.padding(top = 8.dp, bottom = 8.dp, start = 15.dp, end = 15.dp))
         }
     }
 }

@@ -7,7 +7,7 @@ import platform.AppKit.NSApplication
 
 fun main() {
     NSApplication.sharedApplication()
-    Window(AppName) {
+    Window(AppTitle) {
         App()
     }
     NSApp?.run()
