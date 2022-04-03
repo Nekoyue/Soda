@@ -1,7 +1,14 @@
 package moe.yue.common
 
+import org.jetbrains.skiko.ClipboardManager
+import org.jetbrains.skiko.URIManager
+
 expect fun getPlatformName(): String
 
-expect fun setClipboard(content: String)
+fun setClipboard(content: String) {
+    ClipboardManager().setText(content)
+}
 
-expect fun openWebpage(url: String)
+fun openWebpage(url: String) {
+    URIManager().openUri(url)
+}

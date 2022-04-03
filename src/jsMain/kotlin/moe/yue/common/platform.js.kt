@@ -8,12 +8,6 @@ actual fun getPlatformName(): String {
     return "JavaScript"
 }
 
-actual fun setClipboard(content: String) {
-}
-
-actual fun openWebpage(url: String) {
-}
-
 suspend fun fetchFile(url: String): ByteArray? {
     val response = window.fetch(url).await()
     return if (response.ok)
