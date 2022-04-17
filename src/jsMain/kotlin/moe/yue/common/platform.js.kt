@@ -8,6 +8,7 @@ actual fun getPlatformName(): String {
     return "JavaScript"
 }
 
+/**Skiko implementation (without response.ok check) can be found at [org.jetbrains.skiko.loadBytesFromPath]*/
 suspend fun fetchFile(url: String): ByteArray? {
     val response = window.fetch(url).await()
     return if (response.ok)

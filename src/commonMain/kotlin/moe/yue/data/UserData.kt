@@ -13,7 +13,8 @@ class UserData {
     data class SocialMedia(
         val platformName: String,
         val accountId: String? = null,
-        val url: String,
+        val url: String? = null,
+        val clipboard: String? = null,
         val icon: ImageVector? = null
     )
 
@@ -23,6 +24,7 @@ class UserData {
         SocialMedia("GitHub", null, "https://github.com/Nekoyue"),
         SocialMedia("Instagram", null, "https://www.instagram.com/nekoyuew"),
         SocialMedia("osu!", null, "https://osu.ppy.sh/users/10079923"),
+        SocialMedia("Version 2022.4.16", null, "https://github.com/Nekoyue/Soda")
     )
 
     val userName = "Kagurazaka Tsuki"

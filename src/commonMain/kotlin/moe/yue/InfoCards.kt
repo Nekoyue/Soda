@@ -1,15 +1,18 @@
 package moe.yue
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.unit.dp
 
@@ -43,7 +46,7 @@ fun CardsGrid(
             rowWidths[rows] += placeable.width
             rowHeights[rows] = maxOf(rowHeights[rows], placeable.height)
             Pair(rows, placeable)
-        }   // List<Pair<row, placeable>> needs to be converted
+        }   // convert from List<Pair<row, placeable>>
             .groupBy { it.first }.mapValues { it.value.map { it.second } }
 
 
@@ -84,12 +87,15 @@ fun InfoCard(
     Surface(
         modifier = modifier
             .padding(5.dp)
+            .shadow(8.dp, shape = RoundedCornerShape(8.dp))
             .clip(RoundedCornerShape(8.dp))
-            .clickable(onClick = { onClick?.invoke() }),
-        color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
+            .background(Color.White.copy(0.6f).compositeOver(Color.White))
+            .clickable(onClick = { onClick?.invoke() })
     ) {
         Row {
-            Text(text, modifier = Modifier.padding(top = 8.dp, bottom = 8.dp, start = 15.dp, end = 15.dp))
+            Text(
+                text, modifier = Modifier.padding(top = 8.dp, bottom = 8.dp, start = 15.dp, end = 15.dp)
+            )
         }
     }
 }

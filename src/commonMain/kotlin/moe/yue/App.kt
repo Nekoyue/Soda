@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import moe.yue.common.getPlatformName
 import moe.yue.common.openWebpage
+import moe.yue.common.setClipboard
 import moe.yue.data.imagePainter
 import moe.yue.data.userData
 
@@ -28,7 +29,9 @@ fun App() {
     var text by remember { mutableStateOf("Hello, World!") }
     val platformName = getPlatformName()
 
-    MaterialTheme(colors = LightColors) {
+    MaterialTheme(
+        colors = LightColors
+    ) {
         RootLayout()
     }
 }
@@ -38,11 +41,11 @@ fun RootLayout() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = MaterialTheme.colors.primary.copy(alpha = 0.4f))
+            .background(color = MaterialTheme.colors.background)
     ) {
         Surface(
             shape = RoundedCornerShape(8.dp),
-            color = MaterialTheme.colors.surface.copy(alpha = 0.75f),
+            color = MaterialTheme.colors.surface.copy(0.75f),
             modifier = Modifier.padding(32.dp).fillMaxSize().align(Alignment.Center)
         ) {
             Row(modifier = Modifier.padding(16.dp)) {
@@ -59,13 +62,14 @@ fun AvatarCard(modifier: Modifier = Modifier) {
         Surface(
             modifier = Modifier.size(100.dp).align(Alignment.CenterHorizontally),
             shape = CircleShape,
-            color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
+            color = MaterialTheme.colors.onSurface,
+            elevation = 8.dp
         ) {
             Image(painter = imagePainter(userData.avatarPath), "Avatar")
         }
         Text(
             userData.userName,
-            modifier = Modifier.padding(5.dp).align(Alignment.CenterHorizontally)
+            modifier = Modifier.padding(10.dp).align(Alignment.CenterHorizontally)
         )
     }
 }
@@ -74,7 +78,10 @@ fun AvatarCard(modifier: Modifier = Modifier) {
 fun ContactCards(modifier: Modifier = Modifier) {
     CardsGrid(modifier = modifier) {
         userData.socialMedia.forEach {
-            InfoCard(text = it.platformName, onClick = { openWebpage(it.url) })
+            InfoCard(text = it.platformName, onClick = {
+                it.url?.let { url -> openWebpage(url) }
+                it.clipboard?.let { content -> setClipboard(content) }
+            })
         }
     }
 }

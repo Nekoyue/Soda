@@ -13,12 +13,13 @@ import org.jetbrains.skia.Image
 @Composable
 actual fun imagePainter(resourcePath: String): Painter {
     val coroutineScope = rememberCoroutineScope()
-    var imageFile by remember { mutableStateOf(byteArrayOf()) }
+    var imageFile: ByteArray? by remember { mutableStateOf(null) }
 
     coroutineScope.launch {
-        imageFile = fetchFile(resourcePath) ?: byteArrayOf()
+        if (imageFile == null)
+            imageFile = fetchFile(resourcePath) ?: byteArrayOf()
     }
     // TODO: support Bitmap/SVG file type
-    return if (imageFile.isEmpty()) ColorPainter(Color.Transparent)
+    return if (imageFile == null || imageFile!!.isEmpty()) ColorPainter(Color.Transparent)
     else BitmapPainter(Image.makeFromEncoded(imageFile).toComposeImageBitmap())
 }
