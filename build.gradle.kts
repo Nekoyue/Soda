@@ -1,5 +1,6 @@
 import org.jetbrains.compose.compose
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 group = "moe.yue"
 version = "1.0.0"
@@ -59,10 +60,20 @@ kotlin {
     }
 
     if (hostOs == "macos") {
-        val targets = mutableListOf<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget>()
 
-        // TODO: Won't cross compile for now
-        // Cross compile may be possible when I figure out how to link libcurl for multiple architectures
+        // A workaround to add IDE support for macOS target
+        // https://kotlinlang.org/docs/multiplatform-mobile-ios-dependencies.html#workaround-to-enable-ide-support-for-the-shared-ios-source-set
+        val macosTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget =
+            when (hostArch) {
+                "X64" -> ::macosX64
+                "Arm64" -> ::macosArm64
+                else -> error("Unsupported arch: $this")
+            }
+
+        macosTarget("macos") {}
+
+        val targets = mutableListOf<KotlinNativeTarget>()
+
         val macosTargets = mutableListOf(macosX64(), macosArm64())
         targets.addAll(macosTargets)
 
@@ -91,6 +102,7 @@ kotlin {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material)
+                implementation("org.jetbrains.skiko:skiko:${extra["skiko.version"] as String}")
             }
         }
         val commonTest by getting {
@@ -114,7 +126,7 @@ kotlin {
         }
 
 
-        val macosMain by creating { dependsOn(commonMain) }
+        val macosMain by getting { dependsOn(commonMain) }
 
         val macosX64Main by getting { dependsOn(macosMain) }
 
@@ -169,7 +181,7 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 }
 
 kotlin {
-    targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget> {
+    targets.withType<KotlinNativeTarget> {
         binaries.all {
             // TODO: the current compose binary surprises LLVM, so disable checks for now.
             freeCompilerArgs += "-Xdisable-phases=VerifyBitcode"
