@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="soda-desktop-1.0.0">
-    <output-path>$PROJECT_DIR$/build/libs</output-path>
-    <root id="archive" name="soda-desktop-1.0.0.jar">
-      <element id="module-output" name="soda.desktopMain" />
-    </root>
-  </artifact>
-</component>

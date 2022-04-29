@@ -3,7 +3,7 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 group = "moe.yue"
-version = "1.0.0"
+version = "1.0.1"
 
 buildscript {
     repositories {
@@ -175,33 +175,44 @@ compose.desktop.nativeApplication {
 }
 
 //////
+// Generate code used by `fontMapping` in `src/commonMain/kotlin/moe/yue/Theme.kt`
+tasks.register("generateFontMapping") {
+    val fontFolder = File("src/commonMain/resources/font")
+    if (fontFolder.isDirectory) {
+        val fontFiles = fontFolder.listFiles()?.filter { it.isFile && it.name.endsWith(".ttf") }
+        fontFiles?.forEach {
+            val fileName = it.name
+            val resourcePath = "font/${it.name}"
+            var weight = fileName.removeSuffix(".ttf").split("-").last().removeSuffix("Italic")
+            if (weight == "" || weight == "Regular") weight = "Normal"
+            val style = if (fileName.removeSuffix(".ttf").endsWith("Italic")) "Italic" else "Normal"
+            println("FontMapping(\"${resourcePath}\", FontWeight.$weight, FontStyle.$style),")
+        }
+    } else {
+        throw StopExecutionException("Incorrect folder path for fonts: $fontFolder")
+    }
+
+}
+
+//////
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions.jvmTarget = "11"
 }
 
-kotlin {
-    targets.withType<KotlinNativeTarget> {
-        binaries.all {
-            // TODO: the current compose binary surprises LLVM, so disable checks for now.
-            freeCompilerArgs += "-Xdisable-phases=VerifyBitcode"
-        }
-    }
-}
-
-//// a temporary workaround for a bug in jsRun invocation - see https://youtrack.jetbrains.com/issue/KT-48273
-//afterEvaluate {
-//    rootProject.extensions.configure<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension> {
-//        versions.webpackDevServer.version = "4.0.0"
-//        versions.webpackCli.version = "4.9.0"
-//        nodeVersion = "16.0.0"
+//kotlin {
+//    targets.withType<KotlinNativeTarget> {
+//        binaries.all {
+//            // TODO: the current compose binary surprises LLVM, so disable checks for now.
+//            freeCompilerArgs += "-Xdisable-phases=VerifyBitcode"
+//        }
 //    }
 //}
 
-
-// TODO: remove when https://youtrack.jetbrains.com/issue/KT-50778 fixed
-project.tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinJsCompile::class.java).configureEach {
-    kotlinOptions.freeCompilerArgs += listOf(
-        "-Xir-dce-runtime-diagnostic=log"
-    )
-}
+//// TODO: remove when https://youtrack.jetbrains.com/issue/KT-50778 fixed
+//project.tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinJsCompile::class.java).configureEach {
+//    kotlinOptions.freeCompilerArgs += listOf(
+//        "-Xir-dce-runtime-diagnostic=log"
+//    )
+//}
+//
