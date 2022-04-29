@@ -1,10 +1,10 @@
 package moe.yue
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun CardsGrid(
@@ -89,12 +90,13 @@ fun InfoCard(
             .padding(5.dp)
             .shadow(8.dp, shape = RoundedCornerShape(8.dp))
             .clip(RoundedCornerShape(8.dp))
-            .background(Color.White.copy(0.6f).compositeOver(Color.White))
-            .clickable(onClick = { onClick?.invoke() })
+            .clickable(onClick = { onClick?.invoke() }),
+        color = MaterialTheme.colors.surface.copy(alpha = 0.4f).compositeOver(Color.White)
     ) {
         Row {
             Text(
-                text, modifier = Modifier.padding(top = 8.dp, bottom = 8.dp, start = 15.dp, end = 15.dp)
+                text, modifier = Modifier.padding(top = 8.dp, bottom = 8.dp, start = 15.dp, end = 15.dp),
+                style = MaterialTheme.typography.button.copy(fontSize = 16.sp)
             )
         }
     }

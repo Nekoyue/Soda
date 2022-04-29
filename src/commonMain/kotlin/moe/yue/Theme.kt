@@ -2,6 +2,8 @@ package moe.yue
 
 import androidx.compose.material.lightColors
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 
 
 val LightColors = lightColors(
@@ -14,4 +16,13 @@ val LightColors = lightColors(
     background = Color(0xff87daff),
     surface = Color(0xffeaf3fa),
     onSurface = Color(0xff2b2b2b)
+)
+
+// Resources mapping for font files
+data class FontMapping(val resource: String, val weight: FontWeight, val style: FontStyle)
+
+const val fontName = "Nunito"
+val fontMapping = listOf(
+    FontMapping("font/Nunito-Regular.ttf", FontWeight.Normal, FontStyle.Normal),
+    FontMapping("font/Nunito-Medium.ttf", FontWeight.Medium, FontStyle.Normal),
 )

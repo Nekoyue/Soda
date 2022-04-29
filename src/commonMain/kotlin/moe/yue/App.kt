@@ -8,14 +8,14 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
+import androidx.compose.material.Typography
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
-import moe.yue.common.getPlatformName
-import moe.yue.common.openWebpage
-import moe.yue.common.setClipboard
-import moe.yue.data.imagePainter
+import kotlinx.coroutines.launch
+import moe.yue.common.*
 import moe.yue.data.userData
 
 const val AppTitle = "Soda"
@@ -26,14 +26,19 @@ enum class WindowSizeClass { Mobile, Desktop }
 
 @Composable
 fun App() {
-    var text by remember { mutableStateOf("Hello, World!") }
     val platformName = getPlatformName()
 
-    MaterialTheme(
-        colors = LightColors
-    ) {
-        RootLayout()
+    val coroutineScope = rememberCoroutineScope()
+    var defaultFontFamily: FontFamily? by remember { mutableStateOf(null) }
+    coroutineScope.launch {
+        defaultFontFamily = getDefaultFont()
     }
+
+    if (defaultFontFamily != null)
+        MaterialTheme(
+            colors = LightColors,
+            typography = Typography(defaultFontFamily = defaultFontFamily!!)
+        ) { RootLayout() }
 }
 
 @Composable
@@ -62,14 +67,15 @@ fun AvatarCard(modifier: Modifier = Modifier) {
         Surface(
             modifier = Modifier.size(100.dp).align(Alignment.CenterHorizontally),
             shape = CircleShape,
-            color = MaterialTheme.colors.onSurface,
+            color = MaterialTheme.colors.surface,
             elevation = 8.dp
         ) {
             Image(painter = imagePainter(userData.avatarPath), "Avatar")
         }
         Text(
             userData.userName,
-            modifier = Modifier.padding(10.dp).align(Alignment.CenterHorizontally)
+            modifier = Modifier.padding(10.dp).align(Alignment.CenterHorizontally),
+            style = MaterialTheme.typography.h6
         )
     }
 }

@@ -175,26 +175,6 @@ compose.desktop.nativeApplication {
 }
 
 //////
-// Generate code used by `fontMapping` in `src/commonMain/kotlin/moe/yue/Theme.kt`
-tasks.register("generateFontMapping") {
-    val fontFolder = File("src/commonMain/resources/font")
-    if (fontFolder.isDirectory) {
-        val fontFiles = fontFolder.listFiles()?.filter { it.isFile && it.name.endsWith(".ttf") }
-        fontFiles?.forEach {
-            val fileName = it.name
-            val resourcePath = "font/${it.name}"
-            var weight = fileName.removeSuffix(".ttf").split("-").last().removeSuffix("Italic")
-            if (weight == "" || weight == "Regular") weight = "Normal"
-            val style = if (fileName.removeSuffix(".ttf").endsWith("Italic")) "Italic" else "Normal"
-            println("FontMapping(\"${resourcePath}\", FontWeight.$weight, FontStyle.$style),")
-        }
-    } else {
-        throw StopExecutionException("Incorrect folder path for fonts: $fontFolder")
-    }
-
-}
-
-//////
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions.jvmTarget = "11"

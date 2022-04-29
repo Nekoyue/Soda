@@ -1,8 +1,22 @@
 package moe.yue.common
 
+import androidx.compose.runtime.*
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.BitmapPainter
+import androidx.compose.ui.graphics.painter.ColorPainter
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.toComposeImageBitmap
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.platform.Font
 import kotlinx.browser.window
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.await
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.promise
+import moe.yue.fontMapping
+import moe.yue.fontName
 import org.khronos.webgl.Int8Array
+import org.jetbrains.skia.Image as SkImage
 
 actual fun getPlatformName(): String {
     return "JavaScript"
@@ -14,4 +28,30 @@ suspend fun fetchFile(url: String): ByteArray? {
     return if (response.ok)
         Int8Array(response.arrayBuffer().await()).unsafeCast<ByteArray>()
     else null
+}
+
+
+@Composable
+actual fun imagePainter(resourcePath: String): Painter {
+    val coroutineScope = rememberCoroutineScope()
+    var imageFile: ByteArray? by remember { mutableStateOf(null) }
+
+    coroutineScope.launch {
+        if (imageFile == null)
+            imageFile = fetchFile(resourcePath) ?: byteArrayOf()
+    }
+    // TODO: support Bitmap/SVG file type
+    return if (imageFile == null || imageFile!!.isEmpty()) ColorPainter(Color.Transparent)
+    else BitmapPainter(SkImage.makeFromEncoded(imageFile).toComposeImageBitmap())
+}
+
+actual suspend fun getDefaultFont(): FontFamily {
+    val fontsJob = MainScope().promise {
+        fontMapping.map {
+            val fontFile = fetchFile(it.resource)!!
+            Font(fontName, fontFile, it.weight, it.style)
+        }
+    }
+
+    return FontFamily(fontsJob.await())
 }
