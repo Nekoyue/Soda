@@ -11,7 +11,6 @@ import androidx.compose.ui.text.platform.Font
 import kotlinx.browser.window
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.await
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.promise
 import moe.yue.fontMapping
 import moe.yue.fontName
@@ -33,14 +32,13 @@ suspend fun fetchFile(url: String): ByteArray? {
 
 @Composable
 actual fun imagePainter(resourcePath: String): Painter {
-    val coroutineScope = rememberCoroutineScope()
     var imageFile: ByteArray? by remember { mutableStateOf(null) }
 
-    coroutineScope.launch {
-        if (imageFile == null)
-            imageFile = fetchFile(resourcePath) ?: byteArrayOf()
+    LaunchedEffect(Unit) {
+        imageFile = fetchFile(resourcePath) ?: byteArrayOf()
     }
-    // TODO: support Bitmap/SVG file type
+
+    // TODO: support SVG file type
     return if (imageFile == null || imageFile!!.isEmpty()) ColorPainter(Color.Transparent)
     else BitmapPainter(SkImage.makeFromEncoded(imageFile).toComposeImageBitmap())
 }

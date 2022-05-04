@@ -28,9 +28,10 @@ enum class WindowSizeClass { Mobile, Desktop }
 fun App() {
     val platformName = getPlatformName()
 
-    val coroutineScope = rememberCoroutineScope()
+    val windowLayout by remember { mutableStateOf(WindowLayout.Desktop) }
+
     var defaultFontFamily: FontFamily? by remember { mutableStateOf(null) }
-    coroutineScope.launch {
+    LaunchedEffect(Unit) {
         defaultFontFamily = getDefaultFont()
     }
 
