@@ -9,19 +9,22 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.native.ComposeLayer
 import androidx.compose.ui.window.ComposeWindow
+import kotlinx.browser.document
 import kotlinx.browser.window
 import org.jetbrains.skiko.wasm.onWasmReady
 import org.w3c.dom.HTMLCanvasElement
 
+val canvas = document.getElementById("ComposeTarget") as HTMLCanvasElement
+
 fun main() {
     onWasmReady {
+        canvasResize()
         ComposeWindow().apply {
             setTitle(AppTitle)
             setContent {
                 var screenLayout by remember { mutableStateOf(getScreenLayout()) }
-                canvasResize(canvas, layer)
                 window.addEventListener("resize", {
-                    canvasResize(canvas, layer)
+                    composableResize(layer)
                     screenLayout = getScreenLayout()
                 })
                 App(screenLayout)
@@ -43,10 +46,14 @@ fun getScreenLayout(): ScreenLayout {
         ScreenLayout.Mobile
 }
 
-fun canvasResize(canvas: HTMLCanvasElement, layer: ComposeLayer) {
+fun canvasResize(width: Int = window.innerWidth, height: Int = window.innerHeight) {
+    canvas.setAttribute("width", "$width")
+    canvas.setAttribute("height", "$height")
+}
+
+fun composableResize(layer: ComposeLayer) {
     val scale = layer.layer.contentScale
-    canvas.setAttribute("width", "${window.innerWidth}")
-    canvas.setAttribute("height", "${window.innerHeight}")
+    canvasResize()
     layer.layer.attachTo(canvas)
     layer.layer.needRedraw()
     layer.setSize(
