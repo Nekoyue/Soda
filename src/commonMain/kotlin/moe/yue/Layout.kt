@@ -34,7 +34,7 @@ fun MobileLayout() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             AvatarCard(Modifier)
-            ContactCards(Modifier)
+            ContactCards(Modifier, centerAlignment = true)
         }
     }
 }

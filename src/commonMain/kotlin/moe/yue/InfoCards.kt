@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun CardsGrid(
     modifier: Modifier = Modifier,
+    centerAlignment: Boolean = false,
     content: @Composable () -> Unit
 ) {
     Layout(
@@ -65,10 +66,16 @@ fun CardsGrid(
 
         // x cord we have placed up to, per row
         val rowX = MutableList(rows + 1) { 0 }
+
         // Y of each row, based on the height accumulation of previous rows
         val rowY = MutableList(rows + 1) { 0 }
-        for (row in 1..rows)
+        for (row in 1..rows) {
+            if (centerAlignment) {
+                // set starting position of the first element to center all placeables on each row
+                rowX[row] = placeablesMap[row]?.let { (width - it.sumOf { it.width }) / 2 } ?: 0
+            }
             rowY[row] = rowY[row - 1] + rowHeights[row - 1]
+        }
 
 
         layout(width, height) {

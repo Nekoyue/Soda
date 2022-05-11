@@ -40,8 +40,8 @@ fun AvatarCard(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun ContactCards(modifier: Modifier = Modifier) {
-    CardsGrid(modifier = modifier) {
+fun ContactCards(modifier: Modifier = Modifier, centerAlignment: Boolean = false) {
+    CardsGrid(modifier = modifier, centerAlignment) {
         userData.socialMedia.forEach {
             InfoCard(
                 text = it.platformName,
