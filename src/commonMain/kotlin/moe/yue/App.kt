@@ -1,6 +1,7 @@
 package moe.yue
 
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.material.Typography
 import androidx.compose.runtime.*
 import androidx.compose.ui.text.font.FontFamily
@@ -21,6 +22,9 @@ fun App(screenLayout: ScreenLayout) {
     LaunchedEffect(Unit) {
         defaultFontFamily = getDefaultFont()
     }
+
+    if (defaultFontFamily == null)
+        Text("Loading")
 
     if (defaultFontFamily != null)
         MaterialTheme(

@@ -11,7 +11,10 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
+import moe.yue.common.SVGPainter
 import moe.yue.common.imagePainter
 import moe.yue.common.openWebpage
 import moe.yue.common.setClipboard
@@ -40,10 +43,14 @@ fun AvatarCard(modifier: Modifier = Modifier) {
 fun ContactCards(modifier: Modifier = Modifier) {
     CardsGrid(modifier = modifier) {
         userData.socialMedia.forEach {
-            InfoCard(text = it.platformName, onClick = {
-                it.url?.let { url -> openWebpage(url) }
-                it.clipboard?.let { content -> setClipboard(content) }
-            })
+            InfoCard(
+                text = it.platformName,
+                iconPainter = it.icon?.svg?.let { svg -> SVGPainter(svg, LocalDensity.current) },
+                iconColorFilter = it.icon?.colorCode?.let { colorCode -> ColorFilter.tint(colorCode) },
+                onClick = {
+                    it.url?.let { url -> openWebpage(url) }
+                    it.clipboard?.let { content -> setClipboard(content) }
+                })
         }
     }
 }
