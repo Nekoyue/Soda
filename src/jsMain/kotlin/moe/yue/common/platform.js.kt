@@ -40,7 +40,7 @@ actual fun imagePainter(resourcePath: String): Painter {
 
     // TODO: support SVG file type
     return if (imageFile == null || imageFile!!.isEmpty()) ColorPainter(Color.Transparent)
-    else BitmapPainter(SkImage.makeFromEncoded(imageFile).toComposeImageBitmap())
+    else BitmapPainter(SkImage.makeFromEncoded(imageFile!!).toComposeImageBitmap())
 }
 
 actual suspend fun getDefaultFont(): FontFamily {

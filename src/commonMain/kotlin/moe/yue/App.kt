@@ -25,8 +25,7 @@ fun App(screenLayout: ScreenLayout) {
 
     if (defaultFontFamily == null)
         Text("Loading")
-
-    if (defaultFontFamily != null)
+    else
         MaterialTheme(
             colors = LightColors,
             typography = Typography(defaultFontFamily = defaultFontFamily!!)

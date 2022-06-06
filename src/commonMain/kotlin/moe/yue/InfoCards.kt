@@ -43,6 +43,7 @@ fun CardsGrid(
 
         // Map<row, List<placeable>>
         val placeablesMap = measurables.map { measurable ->
+            // note: slow operation
             val placeable = measurable.measure(constraints)
 
             if (rowWidths[rows] + placeable.width > constraints.maxWidth)

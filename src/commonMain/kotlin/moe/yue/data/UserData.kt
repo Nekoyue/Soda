@@ -23,7 +23,7 @@ class UserData {
             "PGP Key", "0x7F9A57293846C8AC", socialIcons["Yubico"],
             "https://keys.openpgp.org/vks/v1/by-fingerprint/A43A9C1D771CAFAC6937B2F67F9A57293846C8AC"
         ),
-        SocialMedia("Version 2022.5.10", null, socialIcons["Git"], "https://github.com/Nekoyue/Soda")
+        SocialMedia("Version 2022.6.6", null, socialIcons["Git"], "https://github.com/Nekoyue/Soda")
     )
 
     val userName = "Kagurazaka Tsuki"
