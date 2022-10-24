@@ -6,9 +6,9 @@ version = "1.0.1"
 
 buildscript {
     repositories {
-        google()
-        gradlePluginPortal()
+        mavenLocal()
         mavenCentral()
+        google()
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
 }
@@ -20,30 +20,31 @@ plugins {
 
 
 repositories {
-    google()
-    gradlePluginPortal()
+    mavenLocal()
     mavenCentral()
+    gradlePluginPortal()
+    google()
     maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-    maven("https://maven.pkg.jetbrains.space/public/p/kotlinx-coroutines/maven")
 }
 
 // For native builds
+// Compose & skiko currently only support native build on macOS
 val hostOs = with(System.getProperty("os.name")) {
     when {
         this == "Mac OS X" -> "macos"
-        startsWith("Win") -> "windows"
-        startsWith("Linux") -> "linux"
-        else -> error("Unsupported OS: $this")
+//        startsWith("Win") -> "mingw"
+//        startsWith("Linux") -> "linux"
+        else -> null
     }
 }
 
-var hostArch = with(System.getProperty("os.arch")) {
+var hostArch = if (hostOs != null) with(System.getProperty("os.arch")) {
     when (this) {
         "x86_64", "amd64" -> "X64"
         "aarch64" -> "Arm64"
         else -> error("Unsupported arch: $this")
     }
-}
+} else null
 
 kotlin {
     jvm("desktop") {
@@ -86,14 +87,17 @@ kotlin {
                     entryPoint = "moe.yue.main"
                     freeCompilerArgs += listOf(
                         "-linker-option", "-framework", "-linker-option", "Metal",
-                        "-linker-option", "-framework", "-linker-option", "CoreText",
-                        "-linker-option", "-framework", "-linker-option", "CoreGraphics"
+                        // "-linker-option", "-framework", "-linker-option", "CoreText", // for iOS
+                        // "-linker-option", "-framework", "-linker-option", "CoreGraphics" // for iOS
                     )
+                    // // the current compose binary surprises LLVM, so disable checks for now.
+                    freeCompilerArgs += "-Xdisable-phases=VerifyBitcode"
                 }
             }
         }
-    }
 
+
+    }
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -123,26 +127,24 @@ kotlin {
 //                implementation(compose.web.core)
 //            }
         }
+        if (hostOs == "macos") {
+            val macosMain by getting { dependsOn(commonMain) }
+            val macosX64Main by getting { dependsOn(macosMain) }
+            val macosArm64Main by getting { dependsOn(macosMain) }
 
+//            // TODO: build for iOS devices
+//            val iosMain by creating { dependsOn(commonMain) }
+//            val iosX64Main by getting { dependsOn(iosMain) }
+//            val iosArm64Main by getting { dependsOn(iosMain) }
 
-        val macosMain by getting { dependsOn(commonMain) }
-
-        val macosX64Main by getting { dependsOn(macosMain) }
-
-        val macosArm64Main by getting { dependsOn(macosMain) }
-
-
-// TODO: build for iOS devices
-//
-//        val iosMain by creating { dependsOn(commonMain) }
-//        val iosX64Main by getting { dependsOn(iosMain) }
-//        val iosArm64Main by getting { dependsOn(iosMain) }
+        }
     }
 }
 
 val distributionName = rootProject.name
 val distributionVersion = rootProject.version as String
 
+// JVM-bundled desktop build
 compose.desktop {
     application {
         mainClass = "moe.yue.Main_desktopKt"
@@ -164,12 +166,14 @@ compose.experimental {
     web.application {}
 }
 
-compose.desktop.nativeApplication {
-    targets(kotlin.targets.getByName("$hostOs$hostArch"))
-    distributions {
-        targetFormats(TargetFormat.Dmg)
-        packageName = distributionName
-        packageVersion = distributionVersion
+if (hostOs != null) {
+    compose.desktop.nativeApplication {
+        targets(kotlin.targets.getByName("$hostOs$hostArch"))
+        distributions {
+            targetFormats(TargetFormat.Dmg)
+            packageName = distributionName
+            packageVersion = distributionVersion
+        }
     }
 }
 
@@ -178,20 +182,3 @@ compose.desktop.nativeApplication {
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions.jvmTarget = "11"
 }
-
-//kotlin {
-//    targets.withType<KotlinNativeTarget> {
-//        binaries.all {
-//            // TODO: the current compose binary surprises LLVM, so disable checks for now.
-//            freeCompilerArgs += "-Xdisable-phases=VerifyBitcode"
-//        }
-//    }
-//}
-
-//// TODO: remove when https://youtrack.jetbrains.com/issue/KT-50778 fixed
-//project.tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinJsCompile::class.java).configureEach {
-//    kotlinOptions.freeCompilerArgs += listOf(
-//        "-Xir-dce-runtime-diagnostic=log"
-//    )
-//}
-//
