@@ -1,4 +1,3 @@
-import org.jetbrains.compose.compose
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
@@ -55,7 +54,7 @@ kotlin {
     }
 
     js(IR) {
-        browser()
+        browser {}
         binaries.executable()
     }
 
