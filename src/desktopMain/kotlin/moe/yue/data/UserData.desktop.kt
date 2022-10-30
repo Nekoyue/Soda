@@ -1,2 +1,0 @@
-package moe.yue.data
-
