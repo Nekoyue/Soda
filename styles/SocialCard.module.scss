@@ -1,0 +1,53 @@
+.root {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+$card-size: 50px; // size of card when hidden
+$icon-size: 25px;
+$margin: 5px; // margins between all items
+
+.card {
+  display: flex;
+  align-items: center;
+
+  padding: ( $card-size - $icon-size ) / 2;
+  margin: $margin;
+
+
+  // card hidden by default
+  width: $card-size;
+  height: $card-size;
+  border-radius: 50%;
+  color: transparent;
+
+
+  transition: all 0.3s;
+
+  &:hover, &:focus, &:active {
+    width: 155px;
+    border-radius: 15px;
+    color: inherit;
+  }
+}
+
+.text {
+  font-weight: 400;
+  margin: auto;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.icon {
+  display: inline-block;
+  flex-shrink: 0;
+  margin-right: $margin;
+
+  fill: white;
+
+  height: $icon-size;
+  width: $icon-size;
+}
