@@ -1,4 +1,5 @@
 import {ISocialIcons} from "./social-icons"
+import {StaticImageData} from "next/image"
 
 export interface ISocialMedia {
     platformName: string,
@@ -11,5 +12,5 @@ export interface ISocialMedia {
 export interface IUserData {
     socialMedias: Array<ISocialMedia>,
     userName: string,
-    avatar: JSX.Element
+    avatar: StaticImageData
 }

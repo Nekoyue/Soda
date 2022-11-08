@@ -1,7 +1,7 @@
 import {ISocialMedia, IUserData} from "../interfaces/user-data"
-import Image from "next/image"
 import socialIcons from "./social-icons"
 import {ISocialIcons} from "../interfaces/social-icons"
+import AvatarImage from "../public/avatar.jpg"
 
 class SocialMedia implements ISocialMedia {
     platformName: string
@@ -46,8 +46,7 @@ class UserData implements IUserData {
 
     userName = "Kagurazaka Tsuki"
 
-    private avatarPath = "avatar.jpg"
-    avatar = <Image src={`/${this.avatarPath}`} alt={`${this.userName}`}/>
+    avatar = AvatarImage
 }
 
 let userData = new UserData()

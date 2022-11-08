@@ -24,7 +24,7 @@ let socialIcons: Record<string, SocialIcons> = {
     "Twitter": new SocialIcons("#1DA1F2", <Twitter/>),
     "Telegram": new SocialIcons("#26A5E4", <Telegram/>),
     "Discord": new SocialIcons("#5865F2", <Discord/>),
-    "GitHub": new SocialIcons("#181717", <Github/>),
+    "GitHub": new SocialIcons("#24292f", <Github/>),
     "Instagram": new SocialIcons("#E4405F", <Instagram/>),
     "osu!": new SocialIcons("#FF66AA", <Osu/>),
     "Yubico": new SocialIcons("#84BD00", <Yubico/>),

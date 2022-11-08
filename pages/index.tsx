@@ -5,7 +5,7 @@ import socialCardStyles from '../styles/SocialCard.module.scss'
 import userData from "../_data/user-data"
 import SocialCard from "../components/index/social-card"
 import Avatar from "../components/index/avatar"
-import {description, title} from "../components/metadata"
+import {description, title} from "../_data/metadata"
 
 export default function Index() {
     return (
@@ -19,7 +19,7 @@ export default function Index() {
             <main className={styles.main}>
                 <Avatar/>
 
-                <h1 className={styles.title}>Kagurazaka Tsuki</h1>
+                <h1 className={styles.title}>{userData.userName}</h1>
 
 
                 <div className={socialCardStyles.root}>
