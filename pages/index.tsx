@@ -15,6 +15,10 @@ export default function Index() {
 
                 <h1 className={styles.title}>{userData.userName}</h1>
 
+                {userData.description &&
+                    <h1 className={styles.description}>{userData.description}</h1>
+                }
+
 
                 <div className={socialCardStyles.root}>
                     {userData.socialMedias.map((it) =>

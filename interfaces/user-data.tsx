@@ -12,5 +12,6 @@ export interface ISocialMedia {
 export interface IUserData {
     socialMedias: Array<ISocialMedia>,
     userName: string,
+    description?: string,
     avatar: StaticImageData
 }

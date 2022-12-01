@@ -45,6 +45,7 @@ class UserData implements IUserData {
     ]
 
     userName = "Kagurazaka Tsuki"
+    description = "cybernetic kawaii fiber-optic cat meow"
 
     avatar = AvatarImage
 }
