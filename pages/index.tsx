@@ -6,10 +6,12 @@ import userData from "../_data/user-data"
 import SocialCard from "../components/index/social-card"
 import Avatar from "../components/index/avatar"
 import {description, title} from "../_data/metadata"
+import Container from "../components/container"
+import Footer from "../components/footer"
 
 export default function Index() {
     return (
-        <div className={styles.container}>
+        <Container>
             <Head>
                 <title>{title}</title>
                 <meta name="description" content={description}/>
@@ -30,9 +32,7 @@ export default function Index() {
 
             </main>
 
-            <footer className={styles.footer}>
-                <a>Website is under construction - Powered by Next.js</a>
-            </footer>
-        </div>
+            <Footer/>
+        </Container>
     )
 }

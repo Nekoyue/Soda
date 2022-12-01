@@ -38,10 +38,10 @@ class UserData implements IUserData {
             url: "https://keys.openpgp.org/vks/v1/by-fingerprint/A43A9C1D771CAFAC6937B2F67F9A57293846C8AC"
         }),
         new SocialMedia("Version", {
-            accountId: "ver. 2022.11.5",
+            accountId: "ver. 2022.11.30",
             icon: socialIcons["Git"],
             url: "https://github.com/Nekoyue/Soda"
-        })
+        })  // TODO: pull the version automatically
     ]
 
     userName = "Kagurazaka Tsuki"
