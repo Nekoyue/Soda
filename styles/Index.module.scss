@@ -80,6 +80,10 @@
   margin-left: 0.5rem;
 }
 
+.footer {
+  border-color: var(--color-border);
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
@@ -89,9 +93,6 @@
 
 @media (prefers-color-scheme: dark) {
   .card {
-    border-color: #222;
-  }
-  .footer {
     border-color: #222;
   }
   .code {

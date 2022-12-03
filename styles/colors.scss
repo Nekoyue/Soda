@@ -1,0 +1,18 @@
+@mixin color-schemes {
+  :root {
+    --color-background: white;
+    --color-primary-text: black;
+    --color-border: black;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-background: #090909;
+      --color-primary-text: white;
+      --color-border: #222;
+    }
+    html {
+      color-scheme: dark;
+    }
+  }
+}
