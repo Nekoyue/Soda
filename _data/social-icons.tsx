@@ -10,12 +10,7 @@ import Yubico from "../public/social-icons/yubico.svg"
 import Git from "../public/social-icons/git.svg"
 
 class SocialIcons implements ISocialIcons {
-    colorCode: string
-    svgIcon: JSX.Element
-
-    constructor(colorCode: string, svgIcon: JSX.Element) {
-        this.colorCode = colorCode
-        this.svgIcon = svgIcon
+    constructor(readonly colorCode: string, readonly svgIcon: JSX.Element) {
     }
 }
 
