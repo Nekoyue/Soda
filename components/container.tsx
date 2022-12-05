@@ -12,8 +12,8 @@ type Props = {
 const Container = ({children}: Props) => {
     return <>
         <Head>
-            <title>{title}</title>
-            <meta name="description" content={description}/>
+            <title key="title">{title}</title>
+            <meta name="description" content={description} key="description"/>
             <link rel="icon" href="/favicon.ico"/>
         </Head>
         <Header/>

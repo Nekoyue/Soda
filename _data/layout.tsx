@@ -14,7 +14,7 @@ class Header implements IHeader {
     logo = LogoImage
     description = "Soda"
     navigationItems = [
-        new Hyperlink("About", "/about"),
+        new Hyperlink("Test", "/posts/test"),
         new Hyperlink("Google", "https://google.com")
     ]
 }

@@ -2,14 +2,18 @@
   :root {
     --color-background: white;
     --color-primary-text: black;
-    --color-border: black;
+    --color-secondary-text: #5f5f5f;
+    --color-border: #969696;
+    --color-code-background: #f2f4f7;
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
       --color-background: #090909;
       --color-primary-text: white;
-      --color-border: #222;
+      --color-secondary-text: #bfbfbf;
+      --color-border: #333333;
+      --color-code-background: #1e1f22;
     }
     html {
       color-scheme: dark;
