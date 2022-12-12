@@ -1,11 +1,7 @@
 .root {
-  padding: 60px 20vw;
+  padding: 60px 6px;
   width: 100%;
-
-  // mobile
-  @media (max-width: 700px) {
-    padding: 20px 2vw;
-  }
+  max-width: 900px;
 }
 
 .title {
@@ -42,8 +38,11 @@
 }
 
 .article {
-  margin-top: 24px;
-  margin-bottom: 16px;
+  @mixin margin-common {
+    margin-top: 24px;
+    margin-bottom: 16px;
+  };
+  @include margin-common;
 
   font-size: 1rem;
   line-height: 1.5;
@@ -52,50 +51,61 @@
     font-weight: 600;
   }
 
-  a {
-    text-decoration: underline;
-    text-decoration-color: var(--color-secondary-text);
+  p {
+    margin-top: 0;
+  }
 
-    &:hover {
-      text-decoration-color: var(--color-primary-text);
+  a {
+    border-bottom: 1px solid var(--color-link-underline);
+
+    &:hover, &:active {
+      border-bottom-color: var(--color-secondary-text);
     }
+
+    transition: border-bottom-color 100ms;
+  }
+
+  @mixin header-common {
+    padding-bottom: 0.3rem;
+    font-weight: 600;
   }
 
   h1 {
-    padding-bottom: 0.3rem;
-    font-size: 2rem;
+    @include margin-common;
+    @include header-common;
+    font-size: 2.5rem;
     border-bottom: 1px solid var(--color-border);
   }
 
   h2 {
-    padding-bottom: 0.3rem;
-    font-size: 1.5rem;
-    border-bottom: 1px solid var(--color-border);
+    @include margin-common;
+    @include header-common;
+    font-size: 1.75rem;
   }
 
   h3 {
-    padding-bottom: 0.3rem;
+    @include margin-common;
+    @include header-common;
     font-size: 1.25rem;
   }
 
-  h4 {
-    padding-bottom: 0.3rem;
-    font-size: 1rem;
-  }
-
   hr {
+    @include margin-common;
     border: none;
     border-top: 1px solid var(--color-border);
   }
 
   blockquote {
+    @include margin-common;
     margin-left: 0;
     padding: 0 1rem;
     color: var(--color-secondary-text);
     border-left: 0.25em solid var(--color-border);
   }
 
+  // code block
   pre {
+    @include margin-common;
     padding: 16px;
     border-radius: 6px;
     background-color: var(--color-code-background);

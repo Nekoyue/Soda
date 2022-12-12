@@ -1,14 +1,22 @@
 $header-height: 64px;
 
 .container {
-  padding: 0 2rem;
   min-height: 90vh;
   display: flex;
+
+  padding: 0 20vw;
+  // pad
+  @media (max-width: 1200px) {
+    padding: 0 12vw;
+  }
+  // mobile
+  @media (max-width: 700px) {
+    padding: 0 2vw;
+  }
 }
 
 
 .header {
-  //position: fixed;
   height: $header-height;
 
   display: flex;
@@ -18,6 +26,11 @@ $header-height: 64px;
   border-bottom: 1px solid var(--color-border);
 
   padding: 0 15vw;
+
+  // pad
+  @media (max-width: 1200px) {
+    padding: 0 8vw;
+  }
 
   // mobile
   @media (max-width: 700px) {
@@ -36,11 +49,10 @@ $header-height: 64px;
     }
 
     &_description {
-      font-size: 22px;
+      font-size: 1.375rem;
       font-weight: 600;
     }
   }
-
 
   &_divider {
     flex: 1;
@@ -48,14 +60,18 @@ $header-height: 64px;
 
   &_right {
     &_item {
-      font-size: 18px;
+      font-size: 1.125rem;
       font-weight: 500;
 
-      padding: 0 16px;
+      margin: 0 16px;
 
-      &:hover, &:focus, &:active {
-        text-decoration: underline;
+      border-bottom: 1px solid transparent;
+
+      &:hover, &:active {
+        border-bottom: 1px solid var(--color-secondary-text);
       }
+
+      transition: border-bottom-color 100ms;
     }
 
     &_theme_switcher {
@@ -66,7 +82,6 @@ $header-height: 64px;
       align-items: center;
 
       cursor: pointer;
-
 
       border-radius: 24px;
 
@@ -87,16 +102,8 @@ $header-height: 64px;
 
 .footer {
   display: flex;
-  flex: 1;
-  padding: 2rem 0;
+  padding: 32px 0;
   border-top: 1px solid var(--color-border);
   justify-content: center;
   align-items: center;
-
-  a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1;
-  }
 }

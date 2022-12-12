@@ -17,7 +17,7 @@ const SocialCard = ({socialMedia}: Props) => {
         <a className={styles.card}
            href={socialMedia.url}
            style={{backgroundColor: socialMedia.icon?.colorCode}}
-           aria-label={socialMedia.platformName} // TODO: add floating tooltips
+           title={socialMedia.platformName}
         >
             {icon}
             <span className={styles.text}>{socialMedia.accountId}</span>
