@@ -13,9 +13,7 @@ const Article = ({post}: PostProps) => {
         <p className={styles.description}>{post.description}</p>
         <div className={styles.metadata}>
             {/* TODO: Add dividers conditionally, author and createAt are nullable */}
-            <span className={styles.metadata_dot}>•</span>
             <span className={styles.metadata_author}>{post.author}</span>
-            <span className={styles.metadata_divider}>|</span>
             <span className={styles.metadata_time}>{post.createAt}</span>
         </div>
         <div

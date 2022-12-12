@@ -14,26 +14,30 @@
   color: var(--color-secondary-text);
 }
 
+.metadata::before {
+  content: ">";
+  font-weight: 600;
+  margin-right: 12px;
+  color: var(--color-secondary-text);
+}
+
 .metadata {
   border-top: 1px solid var(--color-border);
   padding-top: 5px;
   font-size: 1rem;
-
-  &_dot {
-    margin: 0 12px;
-    color: var(--color-secondary-text);
-  }
-
-  &_divider {
-    margin: 0 12px;
-    color: var(--color-border);
-  }
 
   &_author {
   }
 
   &_time {
     color: var(--color-secondary-text);
+  }
+
+  &_time::before {
+    content: "|";
+    font-weight: 600;
+    margin: 0 12px;
+    color: var(--color-border);
   }
 }
 
@@ -120,5 +124,23 @@
     padding: 0.2rem 0.4rem;
     border-radius: 6px;
     background-color: var(--color-code-background);
+  }
+
+
+  ul {
+    padding: 0;
+
+    li {
+      padding-left: 24px;
+      position: relative;
+      list-style-type: none;
+    }
+
+    li::before {
+      content: "•";
+      position: absolute;
+      left: 5px;
+      color: var(--color-secondary-text);
+    }
   }
 }
