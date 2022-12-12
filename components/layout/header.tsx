@@ -1,8 +1,9 @@
 import React from "react"
-import styles from "../styles/Layout.module.scss"
-import {headerData} from "../_data/layout"
+import styles from "../../styles/Layout.module.scss"
+import {headerData} from "../../_data/layout"
 import Link from "next/link"
 import Image from "next/image"
+import ThemeSwitcher from "./theme-switcher"
 
 
 const Header = () => {
@@ -28,6 +29,7 @@ const Header = () => {
                     {it.text}
                 </Link>
             )}</nav>
+            <ThemeSwitcher/>
         </header>
     )
 }

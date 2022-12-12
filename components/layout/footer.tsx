@@ -1,6 +1,6 @@
 import React from "react"
-import styles from "../styles/Layout.module.scss"
-import {footerText} from "../_data/layout"
+import styles from "../../styles/Layout.module.scss"
+import {footerText} from "../../_data/layout"
 
 
 const Footer = () => {

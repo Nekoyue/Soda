@@ -4,7 +4,7 @@ import socialCardStyles from '../styles/SocialCard.module.scss'
 import userData from "../_data/user-data"
 import SocialCard from "../components/index/social-card"
 import Avatar from "../components/index/avatar"
-import Container from "../components/container"
+import Container from "../components/layout/container"
 import React from "react"
 
 export default function Index() {

@@ -32,10 +32,7 @@ $header-height: 64px;
     &_logo {
       margin-right: 4px;
 
-      filter: invert(1);
-      @media (prefers-color-scheme: dark) {
-        filter: invert(0);
-      }
+      filter: var(--invert-bright-image);
     }
 
     &_description {
@@ -59,6 +56,30 @@ $header-height: 64px;
       &:hover, &:focus, &:active {
         text-decoration: underline;
       }
+    }
+
+    &_theme_switcher {
+      margin: 6px;
+      padding: 6px;
+
+      display: flex;
+      align-items: center;
+
+      cursor: pointer;
+
+
+      border-radius: 24px;
+
+      border-width: 0;
+      fill: var(--color-primary-text);
+
+      background: transparent;
+
+      &:hover, &:active {
+        background: var(--color-border);
+      }
+
+      transition: background-color 100ms;
     }
   }
 }

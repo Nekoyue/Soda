@@ -1,4 +1,4 @@
-import Container from "../../components/container"
+import Container from "../../components/layout/container"
 import styles from "../../styles/Post.module.scss"
 import Article, {getAllPostIdentifiers, getMarkdownFromIdentifier, markdownToIPost} from "../../components/post/article"
 import {PostProps} from "../../interfaces/post"

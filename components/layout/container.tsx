@@ -1,9 +1,9 @@
 import React from "react"
-import styles from '../styles/Layout.module.scss'
+import styles from '../../styles/Layout.module.scss'
 import Footer from "./footer"
 import Header from "./header"
 import Head from "next/head"
-import {description, title} from "../_data/metadata"
+import {description, title} from "../../_data/metadata"
 
 type Props = {
     children?: React.ReactNode
