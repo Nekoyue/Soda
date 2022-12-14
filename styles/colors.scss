@@ -4,8 +4,22 @@
   --color-secondary-text: #5c5d5e;
   --color-border: rgba(0, 0, 0, 0.2);
   --color-link-underline: rgba(0, 0, 0, 0.3);
-  --color-code-background: #f2f4f5;
   --invert-bright-image: invert(1);
+
+  --color-code-background: #f2f4f5;
+  --color-code-default: var(--color-primary-text);
+  --color-code-comment: #707273;
+  --color-punctuation: var(--color-code-comment);
+  --color-keyword: #0063aa;
+  --color-function: #00627a;
+  --color-operator: #986d39;
+  --color-boolean: var(--color-keyword);
+  --color-number: #905;
+  --color-string: #690;
+  --color-others: #202025;
+  --color-inserted: var(--color-string);
+  --color-deleted: var(--color-number);
+
 
   html {
     color-scheme: light;
@@ -18,8 +32,21 @@
   --color-secondary-text: #d9d9d9;
   --color-border: rgba(255, 255, 255, 0.2);
   --color-link-underline: rgba(255, 255, 255, 0.3);
-  --color-code-background: #1e1f22;
   --invert-bright-image: invert(0);
+
+  --color-code-background: #1e1f22;
+  --color-code-default: var(--color-primary-text);
+  --color-code-comment: #bfbfbf;
+  --color-punctuation: var(--color-code-comment);
+  --color-keyword: #99ccff;
+  --color-function: #c5e5ed;
+  --color-operator: var(--color-secondary-text);
+  --color-boolean: var(--color-keyword);
+  --color-number: #ff73a9;
+  --color-string: #9bc684;
+  --color-others: #d7d5ff;
+  --color-inserted: var(--color-string);
+  --color-deleted: var(--color-number);
 
   html {
     color-scheme: dark;

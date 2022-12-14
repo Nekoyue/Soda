@@ -1,3 +1,5 @@
+@import "code-highlighting";
+
 .root {
   padding: 60px 6px;
   width: 100%;
@@ -110,12 +112,15 @@
   // code block
   pre {
     @include margin-common;
+    @include code-highlighting;
     padding: 16px;
     border-radius: 6px;
     background-color: var(--color-code-background);
 
     code {
       background-color: transparent;
+      padding: 0;
+
     }
   }
 

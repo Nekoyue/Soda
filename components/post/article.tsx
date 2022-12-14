@@ -1,10 +1,16 @@
-import {remark} from 'remark'
-import remarkHtml from 'remark-html'
 import {IPost, PostProps} from "../../interfaces/post"
 import fs from "fs"
 import styles from "../../styles/Post.module.scss"
 import matter from 'gray-matter'
 import remarkGfm from "remark-gfm"
+import rehypeRaw from "rehype-raw"
+import remarkRehype from "remark-rehype"
+import {unified} from "unified"
+import remarkParse from "remark-parse"
+import rehypePrism from 'rehype-prism-plus'
+import rehypeStringify from "rehype-stringify"
+import rehypeSanitize, {defaultSchema} from "rehype-sanitize"
+import rehypeFormat from "rehype-format"
 
 
 const Article = ({post}: PostProps) => {
@@ -27,10 +33,23 @@ export default Article
 
 export async function markdownToIPost(rawMarkdown: string): Promise<Post> {
     const {data, content} = matter(rawMarkdown)
-    const [markdown] = await Promise.all([remark()
+    const markdown = await unified()
+        .use(remarkParse)
         .use(remarkGfm)
-        .use(remarkHtml)
-        .process(content)])
+        .use(remarkRehype, {allowDangerousHtml: true})
+        .use(rehypeRaw)
+        .use(rehypeSanitize, {
+            ...defaultSchema, attributes: { // allow className for code highlighting
+                ...defaultSchema.attributes,
+                pre: [...(defaultSchema.attributes?.pre || []), 'className'],
+                code: [...(defaultSchema.attributes?.code || []), 'className']
+            }
+        }) // prevent XSS attacks
+        .use(rehypeFormat)
+        .use(rehypeStringify)
+        .use(rehypePrism)
+        .process(content)
+
 
     return new Post(data["title"], String(markdown), data["description"], data["author"], data["date"])
 }

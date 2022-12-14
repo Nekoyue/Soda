@@ -1,0 +1,106 @@
+@mixin code-highlighting {
+  overflow-x: auto;
+
+  code[class*="language-"] {
+    color: var(--color-code-default);
+    font-family: SFMono-Regular, Menlo, Consolas, Courier, monospace;
+
+    direction: ltr;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    line-height: 1.5;
+    tab-size: 4;
+
+    hyphens: none;
+
+    [class~="token"] {
+      &[class~="comment"],
+      &[class~="prolog"],
+      &[class~="doctype"],
+      &[class~="cdata"] {
+        color: var(--color-code-comment)
+      }
+
+      &[class~="punctuation"] {
+        color: var(--color-punctuation)
+      }
+
+      &[class~="namespace"] {
+        opacity: .7;
+      }
+
+      &[class~="keyword"],
+      &[class~="property"],
+      &[class~="tag"],
+      &[class~="atrule"] {
+        color: var(--color-keyword)
+      }
+
+      &[class~="keyword"] {
+        font-weight: 600;
+      }
+
+      &[class~="class-name"], [class~="constant"] {
+        // default color
+      }
+
+      &[class~="function"], &[class~="builtin"] {
+        color: var(--color-function);
+      }
+
+      &[class~="operator"] {
+        color: var(--color-operator);
+      }
+
+      &[class~="boolean"] {
+        color: var(--color-boolean);
+      }
+
+      &[class~="number"] {
+        color: var(--color-number);
+      }
+
+      &[class~="string"],
+      &[class~="char"],
+      &[class~="attr-name"] {
+        color: var(--color-string);
+      }
+
+      &[class~="important"],
+      &[class~="url"],
+      &[class~="regex"],
+      &[class~="variable"],
+      &[class~="selector"],
+      &[class~="attr-value"],
+      &[class~="symbol"],
+      &[class~="entity"] {
+        color: var(--color-others);
+      }
+
+      &[class~="entity"] {
+        cursor: help;
+      }
+
+      &[class~="inserted"] {
+        color: var(--color-inserted);
+      }
+
+      &[class~="deleted"] {
+        color: var(--color-deleted);
+      }
+
+
+      &[class~="important"],
+      &[class~="bold"] {
+        font-weight: bold;
+      }
+
+      &[class~="italic"] {
+        font-style: italic;
+      }
+    }
+  }
+
+}
