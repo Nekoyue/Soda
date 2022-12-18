@@ -43,7 +43,7 @@ $margin: 5px; // margins between all items
 }
 
 .icon {
-  display: inline-block;
+  display: inline-flex;
   flex-shrink: 0;
   margin-right: $margin;
 

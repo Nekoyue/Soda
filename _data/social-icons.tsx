@@ -8,6 +8,7 @@ import Instagram from "../public/social-icons/instagram.svg"
 import Osu from "../public/social-icons/osu.svg"
 import Yubico from "../public/social-icons/yubico.svg"
 import Git from "../public/social-icons/git.svg"
+import Misskey from "../public/social-icons/misskey.svg"
 
 class SocialIcons implements ISocialIcons {
     constructor(readonly colorCode: string, readonly svgIcon: JSX.Element) {
@@ -23,7 +24,8 @@ let socialIcons: Record<string, SocialIcons> = {
     "Instagram": new SocialIcons("#E4405F", <Instagram/>),
     "osu!": new SocialIcons("#FF66AA", <Osu/>),
     "Yubico": new SocialIcons("#84BD00", <Yubico/>),
-    "Git": new SocialIcons("#F05032", <Git/>)
+    "Git": new SocialIcons("#F05032", <Git/>),
+    "Misskey": new SocialIcons("#8bb900", <Misskey/>)
 }
 
 export default socialIcons
