@@ -4,6 +4,7 @@
   --color-secondary-text: #5c5d5e;
   --color-border: rgba(0, 0, 0, 0.2);
   --color-avatar-border: #afb5b7;
+  --color-social-card-text: white;
   --color-link-underline: rgba(0, 0, 0, 0.3);
   --invert-bright-image: invert(1);
 
@@ -33,6 +34,7 @@
   --color-secondary-text: #d9d9d9;
   --color-border: rgba(255, 255, 255, 0.2);
   --color-avatar-border: var(--color-secondary-text);
+  --color-social-card-text: var(--color-primary-text);
   --color-link-underline: rgba(255, 255, 255, 0.3);
   --invert-bright-image: invert(0);
 
