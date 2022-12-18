@@ -1,10 +1,11 @@
 import Container from "../../components/layout/container"
 import styles from "../../styles/Post.module.scss"
-import Article, {getAllPostIdentifiers, getMarkdownFromIdentifier, markdownToIPost} from "../../components/post/article"
+import {getAllPostIdentifiers, getMarkdownFromIdentifier, markdownToIPost} from "../../library/article"
 import {PostProps} from "../../interfaces/post"
 import Head from "next/head"
 import {title} from "../../_data/metadata"
 import React from "react"
+import Article from "../../components/post/article"
 
 
 export default function Post({post}: PostProps) {
