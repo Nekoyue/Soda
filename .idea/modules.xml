@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/soda-next.iml" filepath="$PROJECT_DIR$/soda-next.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Soda.iml" filepath="$PROJECT_DIR$/.idea/Soda.iml" />
     </modules>
   </component>
 </project>
