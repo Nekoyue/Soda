@@ -1,6 +1,6 @@
-import {ISocialMedia} from "../../interfaces/user-data"
+import {ISocialMedia} from "./IUserData"
 
-import styles from '../../styles/SocialCard.module.scss'
+import styles from './SocialCard.module.scss'
 
 type Props = {
     socialMedia: ISocialMedia

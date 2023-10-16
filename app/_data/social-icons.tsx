@@ -1,14 +1,13 @@
-import {ISocialIcons} from "../interfaces/social-icons"
+import {ISocialIcons} from "@/app/index/ISocialIcons"
 
-import Twitter from "../public/social-icons/twitter.svg"
-import Telegram from "../public/social-icons/telegram.svg"
-import Discord from "../public/social-icons/discord.svg"
-import Github from "../public/social-icons/github.svg"
-import Instagram from "../public/social-icons/instagram.svg"
-import Osu from "../public/social-icons/osu.svg"
-import Yubico from "../public/social-icons/yubico.svg"
-import Git from "../public/social-icons/git.svg"
-import Misskey from "../public/social-icons/misskey.svg"
+import Twitter from "@/app/index/social-icons/twitter.svg"
+import Telegram from "@/app/index/social-icons/telegram.svg"
+import Discord from "@/app/index/social-icons/discord.svg"
+import Github from "@/app/index/social-icons/github.svg"
+import Instagram from "@/app/index/social-icons/instagram.svg"
+import Osu from "@/app/index/social-icons/osu.svg"
+import Yubico from "@/app/index/social-icons/yubico.svg"
+import Git from "@/app/index/social-icons/git.svg"
 
 class SocialIcons implements ISocialIcons {
     constructor(readonly colorCode: string, readonly svgIcon: JSX.Element) {
@@ -25,7 +24,6 @@ let socialIcons: Record<string, SocialIcons> = {
     "osu!": new SocialIcons("#FF66AA", <Osu/>),
     "Yubico": new SocialIcons("#84BD00", <Yubico/>),
     "Git": new SocialIcons("#F05032", <Git/>),
-    "Misskey": new SocialIcons("#8bb900", <Misskey/>)
 }
 
 export default socialIcons

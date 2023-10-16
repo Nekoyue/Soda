@@ -1,6 +1,6 @@
 import userData from "./user-data"
-import {IHeader, IHyperlink} from "../interfaces/header"
-import LogoImage from "../public/logo.png"
+import {IHeader, IHyperlink} from "../IHeader"
+import LogoImage from "./logo.png"
 
 export let footerText = `CC BY-SA © ${new Date().getFullYear()} ${userData.userName}`
 

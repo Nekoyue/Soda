@@ -1,4 +1,4 @@
-import {ISocialIcons} from "./social-icons"
+import {ISocialIcons} from "./ISocialIcons"
 import {StaticImageData} from "next/image"
 
 export interface ISocialMedia {

@@ -1,5 +1,7 @@
-import styles from "../../styles/Layout.module.scss"
-import ThemeSwitcherIcon from "../../public/icons/theme-switcher.svg"
+'use client'
+
+import styles from "./Layout.module.scss"
+import ThemeSwitcherIcon from "./theme-switcher.svg"
 import {useEffect} from "react"
 
 

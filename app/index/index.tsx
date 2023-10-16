@@ -1,15 +1,13 @@
-import styles from '../styles/Index.module.scss'
-import socialCardStyles from '../styles/SocialCard.module.scss'
+import styles from './Index.module.scss'
+import socialCardStyles from './SocialCard.module.scss'
 
-import userData from "../_data/user-data"
-import SocialCard from "../components/index/social-card"
-import Avatar from "../components/index/avatar"
-import Container from "../components/layout/container"
+import userData from "@/app/_data/user-data"
+import SocialCard from "./social-card"
+import Avatar from "./avatar"
 import React from "react"
 
 export default function Index() {
     return (
-        <Container>
             <main className={styles.main}>
                 <Avatar/>
 
@@ -25,6 +23,5 @@ export default function Index() {
                         <SocialCard key={it.platformName} socialMedia={it}/>)}
                 </div>
             </main>
-        </Container>
     )
 }

@@ -1,6 +1,6 @@
-import styles from '../../styles/Avatar.module.scss'
+import styles from './Avatar.module.scss'
 import Image from "next/image"
-import userData from "../../_data/user-data"
+import userData from "@/app/_data/user-data"
 
 
 const Avatar = () => {

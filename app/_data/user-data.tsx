@@ -1,7 +1,7 @@
-import {ISocialMedia, IUserData} from "../interfaces/user-data"
+import {ISocialMedia, IUserData} from "@/app/index/IUserData"
 import socialIcons from "./social-icons"
-import {ISocialIcons} from "../interfaces/social-icons"
-import AvatarImage from "../public/avatar.jpg"
+import {ISocialIcons} from "@/app/index/ISocialIcons"
+import AvatarImage from "./avatar.jpg"
 
 class SocialMedia implements ISocialMedia {
     platformName: string
@@ -28,7 +28,7 @@ class UserData implements IUserData {
     socialMedias = [
         new SocialMedia("Twitter", {accountId: "@NekoyueW", url: "https://twitter.com/NekoyueW"}),
         new SocialMedia("Telegram", {accountId: "@Nekoyue", url: "https://t.me/Nekoyue"}),
-        new SocialMedia("Discord", {accountId: "yue#4816", clipboard: "yue#4816"}),
+        new SocialMedia("Discord", {accountId: "@nyayue", url: "https://discord.com/users/369120521964748802"}),
         new SocialMedia("GitHub", {accountId: "@Nekoyue", url: "https://github.com/Nekoyue"}),
         new SocialMedia("Instagram", {accountId: "@nekoyuew", url: "https://www.instagram.com/nekoyuew"}),
         new SocialMedia("osu!", {accountId: "@Nekoyue", url: "https://osu.ppy.sh/users/10079923"}),

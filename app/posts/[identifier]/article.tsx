@@ -9,7 +9,7 @@ import rehypeFormat from "rehype-format"
 import rehypeStringify from "rehype-stringify"
 import rehypePrism from "rehype-prism-plus"
 import fs from "fs"
-import {IPost} from "../interfaces/post"
+import {IPost} from "./IPost"
 
 export async function markdownToIPost(rawMarkdown: string): Promise<Post> {
     const {data, content} = matter(rawMarkdown)
@@ -35,11 +35,11 @@ export async function markdownToIPost(rawMarkdown: string): Promise<Post> {
 }
 
 export function getAllPostIdentifiers() {
-    return fs.readdirSync("_posts/").map((it) => it.replace(/\.md$/, ''))
+    return fs.readdirSync(`${process.cwd()}/app/_posts/`).map((it) => it.replace(/\.md$/, ''))
 }
 
 export function getMarkdownFromIdentifier(identifier: string) {
-    return fs.readFileSync(`_posts/${identifier}.md`, 'utf8')
+    return fs.readFileSync(`${process.cwd()}/app/_posts/${identifier}.md`, 'utf8')
 }
 
 export function getAllPostMarkdowns() {
