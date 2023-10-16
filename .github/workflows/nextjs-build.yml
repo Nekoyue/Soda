@@ -1,0 +1,25 @@
+name: Build Next.js site
+
+on:
+  push:
+    branches: [ "soda-next" ]
+  pull_request:
+    branches: [ "soda-next" ]
+  workflow_dispatch:
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+      - name: Install dependencies
+        run: bun install
+      - name: Build with Next.js
+        run: bun run build
