@@ -1,2 +1,2 @@
-export let title = "Soda~"
-export let description = "Kagurazaka Tsuki's Personal Website"
+export const title = "Soda~"
+export const description = "Kagurazaka Tsuki's Personal Website"

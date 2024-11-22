@@ -15,7 +15,7 @@ class SocialIcons implements ISocialIcons {
 }
 
 // svg files should be placed at ../public/social-icons/*
-let socialIcons: Record<string, SocialIcons> = {
+const socialIcons: Record<string, SocialIcons> = {
     "Twitter": new SocialIcons("#1DA1F2", <Twitter/>),
     "Telegram": new SocialIcons("#26A5E4", <Telegram/>),
     "Discord": new SocialIcons("#5865F2", <Discord/>),

@@ -2,7 +2,7 @@ import userData from "./user-data"
 import {IHeader, IHyperlink} from "../IHeader"
 import LogoImage from "./logo.png"
 
-export let footerText = `CC BY-SA © ${new Date().getFullYear()} ${userData.userName}`
+export const footerText = `CC BY-SA © ${new Date().getFullYear()} ${userData.userName}`
 
 class Hyperlink implements IHyperlink {
     constructor(readonly text: string,
@@ -19,5 +19,5 @@ class Header implements IHeader {
     ]
 }
 
-export let headerData = new Header()
+export const headerData = new Header()
 

@@ -50,5 +50,5 @@ class UserData implements IUserData {
     avatar = AvatarImage
 }
 
-let userData = new UserData()
+const userData = new UserData()
 export default userData
