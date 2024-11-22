@@ -7,7 +7,7 @@ import rehypeRaw from "rehype-raw"
 import rehypeSanitize, {defaultSchema} from "rehype-sanitize"
 import rehypeFormat from "rehype-format"
 import rehypeStringify from "rehype-stringify"
-import rehypePrism from "rehype-prism-plus"
+import rehypeHighlight from "rehype-highlight"
 import fs from "fs"
 import {IPost} from "./IPost"
 
@@ -26,8 +26,8 @@ export async function markdownToIPost(rawMarkdown: string): Promise<Post> {
             }
         }) // prevent XSS attacks
         .use(rehypeFormat)
+        .use(rehypeHighlight)
         .use(rehypeStringify)
-        .use(rehypePrism)
         .process(content)
 
 

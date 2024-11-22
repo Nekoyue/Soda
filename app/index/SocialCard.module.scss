@@ -15,7 +15,7 @@ $margin: 5px; // margins between all items
   display: flex;
   align-items: center;
 
-  padding: ( $card-size - $icon-size ) / 2;
+  padding: ( $card-size - $icon-size ) * 0.5;
   margin: $margin;
 
 

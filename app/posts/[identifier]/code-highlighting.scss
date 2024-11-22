@@ -1,7 +1,7 @@
 @mixin code-highlighting {
   overflow-x: auto;
 
-  code[class*="language-"] {
+  code[class~="hljs"] {
     color: var(--color-code-default);
     font-family: SFMono-Regular, Menlo, Consolas, Courier, monospace;
 
@@ -15,92 +15,73 @@
 
     hyphens: none;
 
-    [class~="token"] {
-      &[class~="comment"],
-      &[class~="prolog"],
-      &[class~="doctype"],
-      &[class~="cdata"] {
-        color: var(--color-code-comment)
-      }
 
-      &[class~="punctuation"] {
-        color: var(--color-punctuation)
-      }
+    [class~="hljs-comment"] {
+      color: var(--color-code-comment)
+    }
 
-      &[class~="namespace"] {
-        opacity: .7;
-      }
+    [class~="hljs-punctuation"] {
+      color: var(--color-punctuation)
+    }
 
-      &[class~="keyword"],
-      &[class~="property"],
-      &[class~="tag"],
-      &[class~="atrule"] {
-        color: var(--color-keyword)
-      }
+    [class~="hljs-keyword"],
+    [class~="hljs-property"],
+    [class~="hljs-tag"] {
+      color: var(--color-keyword)
+    }
 
-      &[class~="keyword"] {
-        font-weight: 600;
-      }
+    [class~="hljs-keyword"] {
+      font-weight: 600;
+    }
 
-      &[class~="class-name"], [class~="constant"] {
-        // default color
-      }
+    [class~="hljs-class-name"] {
+      // default color
+    }
 
-      &[class~="function"], &[class~="builtin"] {
-        color: var(--color-function);
-      }
+    [class~="hljs-title"] {
+      color: var(--color-function);
+    }
 
-      &[class~="operator"] {
-        color: var(--color-operator);
-      }
+    [class~="hljs-operator"] {
+      color: var(--color-operator);
+    }
 
-      &[class~="boolean"] {
-        color: var(--color-boolean);
-      }
+    [class~="hljs-literal"] {
+      color: var(--color-boolean);
+    }
 
-      &[class~="number"] {
-        color: var(--color-number);
-      }
+    [class~="hljs-number"] {
+      color: var(--color-number);
+    }
 
-      &[class~="string"],
-      &[class~="char"],
-      &[class~="attr-name"] {
-        color: var(--color-string);
-      }
+    [class~="hljs-string"],
+    [class~="hljs-attr"],
+    [class~="hljs-attribute"] {
+      color: var(--color-string);
+    }
 
-      &[class~="important"],
-      &[class~="url"],
-      &[class~="regex"],
-      &[class~="variable"],
-      &[class~="selector"],
-      &[class~="attr-value"],
-      &[class~="symbol"],
-      &[class~="entity"] {
-        color: var(--color-others);
-      }
+    [class~="hljs-link"],
+    [class~="hljs-regexp"],
+    [class~="hljs-variable"],
+    [class~="hljs-symbol"] {
+      color: var(--color-others);
+    }
 
-      &[class~="entity"] {
-        cursor: help;
-      }
+    [class~="hljs-addition"] {
+      color: var(--color-addition);
+    }
 
-      &[class~="inserted"] {
-        color: var(--color-inserted);
-      }
-
-      &[class~="deleted"] {
-        color: var(--color-deleted);
-      }
+    [class~="hljs-deletion"] {
+      color: var(--color-deletion);
+    }
 
 
-      &[class~="important"],
-      &[class~="bold"] {
-        font-weight: bold;
-      }
+    [class~="hljs-strong"] {
+      font-weight: bold;
+    }
 
-      &[class~="italic"] {
-        font-style: italic;
-      }
+    [class~="hljs-emphasis"] {
+      font-style: italic;
     }
   }
-
 }

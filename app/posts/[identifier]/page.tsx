@@ -4,8 +4,9 @@ import React, {cache} from "react"
 import {getAllPostIdentifiers, getMarkdownFromIdentifier, markdownToIPost} from "@/app/posts/[identifier]/article";
 import {PostProps} from "@/app/posts/[identifier]/IPost";
 
-export async function generateMetadata({params}: { params: { identifier: string } }) {
-    let {post} = await getPost(params.identifier)
+export async function generateMetadata(props: { params: Promise<{ identifier: string }> }) {
+    const params = await props.params;
+    const {post} = await getPost(params.identifier)
     return {
         title: `${post.title} | ${title}`,
         description: post.description,
@@ -16,8 +17,9 @@ export async function generateMetadata({params}: { params: { identifier: string 
     }
 }
 
-export default async function Post({params}: { params: { identifier: string } }) {
-    let {post} = await getPost(params.identifier)
+export default async function Post(props: { params: Promise<{ identifier: string }> }) {
+    const params = await props.params;
+    const {post} = await getPost(params.identifier)
     return <>
         <article className={styles.root}>
             <Article post={post}/>

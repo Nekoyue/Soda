@@ -19,8 +19,8 @@
   --color-number: #905;
   --color-string: #690;
   --color-others: #202025;
-  --color-inserted: var(--color-string);
-  --color-deleted: var(--color-number);
+  --color-addition: var(--color-string);
+  --color-deletion: var(--color-number);
 
 
   html {
@@ -49,8 +49,8 @@
   --color-number: #ff73a9;
   --color-string: #9bc684;
   --color-others: #d7d5ff;
-  --color-inserted: var(--color-string);
-  --color-deleted: var(--color-number);
+  --color-addition: var(--color-string);
+  --color-deletion: var(--color-number);
 
   html {
     color-scheme: dark;

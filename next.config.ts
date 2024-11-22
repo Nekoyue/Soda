@@ -1,9 +1,8 @@
-import type { NextConfig } from "next";
+import type {NextConfig} from "next";
 
 
 const nextConfig: NextConfig = {
     reactStrictMode: true,
-    swcMinify: true,
     distDir: 'build',
     images: {
         formats: ["image/avif", "image/webp"],
@@ -13,18 +12,35 @@ const nextConfig: NextConfig = {
         defaultLocale: "en",
     },
 
-    webpack(config) {
-        config.resolve.fallback = {
-            fs: false
-        };
+    // webpack(config) {
+    //     config.resolve.fallback = {
+    //         fs: false
+    //     };
+    //
+    //     config.module.rules.push({
+    //         test: /\.svg$/i,
+    //         use: ['@svgr/webpack'],
+    //     })
+    //
+    //     return config
+    // },
 
-        config.module.rules.push({
-            test: /\.svg$/i,
-            use: ['@svgr/webpack'],
-        })
-
-        return config
+    sassOptions: {
+        // Suppress warnings until Next.js is updated to use sass-loader 16+
+        // https://github.com/vercel/next.js/issues/71638
+        silenceDeprecations: ['legacy-js-api'],
     },
+
+    experimental: {
+        turbo: {
+            rules: {
+                '*.svg': {
+                    loaders: ['@svgr/webpack'],
+                    as: '*.js',
+                },
+            },
+        }
+    }
 };
 
 export default nextConfig;

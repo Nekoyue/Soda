@@ -1,6 +1,6 @@
-@import "colors";
+@use "colors";
 
-@include color-schemes;
+@include colors.color-schemes;
 
 html,
 body {

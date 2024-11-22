@@ -1,4 +1,4 @@
-@import "code-highlighting";
+@use "code-highlighting";
 
 .root {
   padding: 60px 6px;
@@ -116,7 +116,7 @@
   // code block
   pre {
     @include margin-common;
-    @include code-highlighting;
+    @include code-highlighting.code-highlighting;
     padding: 16px;
     border-radius: 6px;
     background-color: var(--color-code-background);
