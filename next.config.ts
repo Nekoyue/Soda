@@ -1,4 +1,7 @@
-module.exports = {
+import type { NextConfig } from "next";
+
+
+const nextConfig: NextConfig = {
     reactStrictMode: true,
     swcMinify: true,
     distDir: 'build',
@@ -22,10 +25,13 @@ module.exports = {
 
         return config
     },
-}
+};
 
-// const withBundleAnalyzer = require('@next/bundle-analyzer')({
+export default nextConfig;
+
+// import nextBundleAnalyzer from "@next/bundle-analyzer";
+// const withBundleAnalyzer = nextBundleAnalyzer({
 //     enabled: process.env.ANALYZE === 'true',
 // })
 //
-// module.exports = withBundleAnalyzer({})
+// export default withBundleAnalyzer(nextConfig)
