@@ -1,5 +1,5 @@
 import {ISocialMedia, IUserData} from "@/app/index/IUserData"
-import socialIcons from "./social-icons"
+import socialIcons from "@/app/index/social-icons"
 import {ISocialIcons} from "@/app/index/ISocialIcons"
 import AvatarImage from "./avatar.jpg"
 
