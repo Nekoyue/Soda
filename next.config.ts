@@ -12,18 +12,18 @@ const nextConfig: NextConfig = {
         defaultLocale: "en",
     },
 
-    // webpack(config) {
-    //     config.resolve.fallback = {
-    //         fs: false
-    //     };
-    //
-    //     config.module.rules.push({
-    //         test: /\.svg$/i,
-    //         use: ['@svgr/webpack'],
-    //     })
-    //
-    //     return config
-    // },
+    webpack(config) {
+        config.resolve.fallback = {
+            fs: false
+        };
+
+        config.module.rules.push({
+            test: /\.svg$/i,
+            use: ['@svgr/webpack'],
+        })
+
+        return config
+    },
 
     sassOptions: {
         // Suppress warnings until Next.js is updated to use sass-loader 16+
