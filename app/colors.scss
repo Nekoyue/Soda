@@ -8,7 +8,7 @@
   --color-link-underline: rgba(0, 0, 0, 0.3);
   --invert-bright-image: invert(1);
 
-  --color-code-background: #f2f4f5;
+  --color-code-background: rgba(151, 153, 153, 0.15);
   --color-code-default: var(--color-primary-text);
   --color-code-comment: #707273;
   --color-punctuation: var(--color-code-comment);
@@ -38,7 +38,7 @@
   --color-link-underline: rgba(255, 255, 255, 0.3);
   --invert-bright-image: invert(0);
 
-  --color-code-background: #1e1f22;
+  --color-code-background: rgba(135, 139, 153, 0.15);
   --color-code-default: var(--color-primary-text);
   --color-code-comment: #bfbfbf;
   --color-punctuation: var(--color-code-comment);
