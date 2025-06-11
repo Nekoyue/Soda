@@ -7,10 +7,6 @@ const nextConfig: NextConfig = {
     images: {
         formats: ["image/avif", "image/webp"],
     },
-    i18n: {
-        locales: ["en"],
-        defaultLocale: "en",
-    },
 
     webpack(config) {
         config.resolve.fallback = {
@@ -31,16 +27,15 @@ const nextConfig: NextConfig = {
         silenceDeprecations: ['legacy-js-api'],
     },
 
-    experimental: {
-        turbo: {
-            rules: {
-                '*.svg': {
-                    loaders: ['@svgr/webpack'],
-                    as: '*.js',
-                },
+    turbopack: {
+        rules: {
+            '*.svg': {
+                loaders: ['@svgr/webpack'],
+                as: '*.js',
             },
-        }
+        },
     }
+
 };
 
 export default nextConfig;
