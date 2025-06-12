@@ -1,3 +1,5 @@
+// noinspection HtmlRequiredTitleElement
+
 import './globals.scss'
 import type {Metadata} from 'next'
 import {description, title} from "@/app/_data/metadata";
@@ -17,7 +19,11 @@ export const metadata: Metadata = {
 export default function RootLayout(
     {children}: { children: React.ReactNode }) {
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
+        <head><script dangerouslySetInnerHTML={{
+            // flattened code in ThemeSwitcher, set theme class before rendering to prevent page flashing
+            __html: `((theme = window.localStorage.getItem("theme") || (window.matchMedia('(prefers-color-scheme: dark)').matches ? "dark" : "light")) => (document.documentElement.classList.remove("light-theme", "dark-theme"), document.documentElement.classList.add(\`\${theme}-theme\`), window.localStorage.setItem("theme", theme)))(undefined);`
+        }}></script></head>
         <body>
         <Header/>
         <div className={styles.root_layout}>{children}</div>
