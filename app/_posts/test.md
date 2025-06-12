@@ -86,29 +86,44 @@ impl A<i32> {
 
 > Blockquotes
 
-<tabs group="build-script">
+[//]: # (<tabs group="build-script">)
 
-<tab title="Kotlin" group-key="kotlin">
+[//]: # ()
 
-```kotlin
-plugins {
-    kotlin("multiplatform") version "%kotlinVersion%"
-}
-```
+[//]: # (<tab title="Kotlin" group-key="kotlin">)
 
-</tab>
-<tab title="Groovy" group-key="groovy">
+[//]: # ()
 
-```
-plugins {
-    id 'org.jetbrains.kotlin.multiplatform' version '%kotlinVersion%'
-}
-```
+[//]: # (```kotlin)
 
-</tab>
-</tabs>
+[//]: # (plugins {)
 
+[//]: # (    kotlin&#40;"multiplatform"&#41; version "%kotlinVersion%")
 
-<script>alert("XSS injection test")</script>
+[//]: # (})
 
-> <script>alert("XSS injection test 2")</script>
+[//]: # (```)
+
+[//]: # ()
+
+[//]: # (</tab>)
+
+[//]: # (<tab title="Groovy" group-key="groovy">)
+
+[//]: # ()
+
+[//]: # (```)
+
+[//]: # (plugins {)
+
+[//]: # (    id 'org.jetbrains.kotlin.multiplatform' version '%kotlinVersion%')
+
+[//]: # (})
+
+[//]: # (```)
+
+[//]: # ()
+
+[//]: # (</tab>)
+
+[//]: # (</tabs>)

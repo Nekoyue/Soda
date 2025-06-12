@@ -1,6 +1,8 @@
+import {ReactElement} from "react";
+
 export interface IPost {
     title: string,
-    markdownHTML: string,
+    markdownReact: ReactElement,
     description?: string,
     author?: string,
     createAt?: string

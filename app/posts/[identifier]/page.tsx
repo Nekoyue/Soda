@@ -1,6 +1,6 @@
 import styles from "./Post.module.scss"
 import {title} from "@/app/_data/metadata"
-import React, {cache} from "react"
+import React, {cache, ReactElement, useMemo} from "react"
 import {getAllPostIdentifiers, getMarkdownFromIdentifier, markdownToIPost} from "@/app/posts/[identifier]/article";
 import {PostProps} from "@/app/posts/[identifier]/IPost";
 
@@ -28,6 +28,8 @@ export default async function Post(props: { params: Promise<{ identifier: string
 }
 
 const Article = ({post}: PostProps) => {
+    const article = useMemo(() => post.markdownReact, [post?.markdownReact]) as ReactElement;
+
     return (<>
         <h1 className={styles.title}>{post.title}</h1>
         <p className={styles.description}>{post.description}</p>
@@ -36,10 +38,7 @@ const Article = ({post}: PostProps) => {
             <span className={styles.metadata_author}>{post.author}</span>
             <span className={styles.metadata_time}>{post.createAt}</span>
         </div>
-        <div
-            className={styles.article}
-            dangerouslySetInnerHTML={{__html: post.markdownHTML}}
-        />
+        <div className={styles.article}>{article}</div>
     </>)
 }
 
@@ -49,7 +48,7 @@ const getPost = cache(async (identifier: string): Promise<PostProps> => {
     return {
         post: {
             title: post.title,
-            markdownHTML: post.markdownHTML,
+            markdownReact: post.markdownReact,
             description: post.description || undefined,
             createAt: post.createAt || undefined,
             author: post.author || undefined

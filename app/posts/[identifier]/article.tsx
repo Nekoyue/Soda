@@ -6,14 +6,17 @@ import remarkRehype from "remark-rehype"
 import rehypeRaw from "rehype-raw"
 import rehypeSanitize, {defaultSchema} from "rehype-sanitize"
 import rehypeFormat from "rehype-format"
-import rehypeStringify from "rehype-stringify"
 import rehypeHighlight from "rehype-highlight"
 import fs from "fs"
 import {IPost} from "./IPost"
+import rehypeReact from "rehype-react";
+import Link from "next/link";
+import * as production from 'react/jsx-runtime'
+import {ReactElement} from "react";
 
 export async function markdownToIPost(rawMarkdown: string): Promise<Post> {
     const {data, content} = matter(rawMarkdown)
-    const markdown = await unified()
+    const markdown = unified()
         .use(remarkParse)
         .use(remarkGfm)
         .use(remarkRehype, {allowDangerousHtml: true})
@@ -27,11 +30,10 @@ export async function markdownToIPost(rawMarkdown: string): Promise<Post> {
         }) // prevent XSS attacks
         .use(rehypeFormat)
         .use(rehypeHighlight)
-        .use(rehypeStringify)
-        .process(content)
+        .use(rehypeReact, {...production, components: {a: Link}})
+        .processSync(content).result
 
-
-    return new Post(data["title"], String(markdown), data["description"], data["author"], data["date"])
+    return new Post(data["title"], markdown, data["description"], data["author"], data["date"])
 }
 
 export function getAllPostIdentifiers() {
@@ -52,7 +54,7 @@ class Post implements IPost {
     createAt?: string
 
     constructor(readonly title: string,
-                readonly markdownHTML: string,
+                readonly markdownReact: ReactElement,
                 readonly description?: string,
                 readonly author?: string,
                 createAt?: string) {
