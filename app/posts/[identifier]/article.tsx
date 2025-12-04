@@ -2,12 +2,10 @@ import fs from "fs"
 import remarkGfm from "remark-gfm"
 import {IPost} from "./IPost"
 import {ReactElement} from "react";
-import * as production from 'react/jsx-runtime'
 import {compileMDX} from 'next-mdx-remote/rsc'
 import rehypeRaw from "rehype-raw";
 import rehypeFormat from "rehype-format";
 import rehypeHighlight from "rehype-highlight";
-import rehypeReact from "rehype-react";
 import Link from "next/link";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import {nodeTypes} from "@mdx-js/mdx";
@@ -33,11 +31,15 @@ export async function markdownToIPost(rawMarkdown: string): Promise<Post> {
                     rehypeFormat,
                     rehypeAutolinkHeadings,
                     rehypeHighlight,
-                    [rehypeReact, {...production, components: {a: Link}}]
                 ],
                 format: "md"
             },
             parseFrontmatter: true
+        },
+        components: {
+            a(props) {
+                return <Link {...props} />
+            } // <Link/> provides client-side optimization
         }
     })
 
