@@ -1,39 +1,48 @@
-import matter from "gray-matter"
-import {unified} from "unified"
-import remarkParse from "remark-parse"
-import remarkGfm from "remark-gfm"
-import remarkRehype from "remark-rehype"
-import rehypeRaw from "rehype-raw"
-import rehypeSanitize, {defaultSchema} from "rehype-sanitize"
-import rehypeFormat from "rehype-format"
-import rehypeHighlight from "rehype-highlight"
 import fs from "fs"
+import remarkGfm from "remark-gfm"
 import {IPost} from "./IPost"
+import {ReactElement} from "react";
+import * as production from 'react/jsx-runtime'
+import {compileMDX} from 'next-mdx-remote/rsc'
+import rehypeRaw from "rehype-raw";
+import rehypeFormat from "rehype-format";
+import rehypeHighlight from "rehype-highlight";
 import rehypeReact from "rehype-react";
 import Link from "next/link";
-import * as production from 'react/jsx-runtime'
-import {ReactElement} from "react";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import {nodeTypes} from "@mdx-js/mdx";
 
 export async function markdownToIPost(rawMarkdown: string): Promise<Post> {
-    const {data, content} = matter(rawMarkdown)
-    const markdown = unified()
-        .use(remarkParse)
-        .use(remarkGfm)
-        .use(remarkRehype, {allowDangerousHtml: true})
-        .use(rehypeRaw)
-        .use(rehypeSanitize, {
-            ...defaultSchema, attributes: { // allow className for code highlighting
-                ...defaultSchema.attributes,
-                pre: [...(defaultSchema.attributes?.pre || []), 'className'],
-                code: [...(defaultSchema.attributes?.code || []), 'className']
-            }
-        }) // prevent XSS attacks
-        .use(rehypeFormat)
-        .use(rehypeHighlight)
-        .use(rehypeReact, {...production, components: {a: Link}})
-        .processSync(content).result
+    const {content, frontmatter} = await compileMDX<{
+        title: string, description: string | undefined, author: string | undefined, date: string | undefined
+    }>
+    ({
+        source: rawMarkdown,
+        options: {
+            mdxOptions: {
+                remarkPlugins: [remarkGfm],
+                rehypePlugins: [
+                    [rehypeRaw, {passThrough: nodeTypes}],
+                    // [rehypeSanitize, { // prevent XSS attacks
+                    //     ...defaultSchema, attributes: { // allow className for code highlighting
+                    //         ...defaultSchema.attributes,
+                    //         pre: [...(defaultSchema.attributes?.pre || []), 'className'],
+                    //         code: [...(defaultSchema.attributes?.code || []), 'className']
+                    //     }
+                    // }],
+                    rehypeFormat,
+                    rehypeAutolinkHeadings,
+                    rehypeHighlight,
+                    [rehypeReact, {...production, components: {a: Link}}]
+                ],
+                format: "md"
+            },
+            parseFrontmatter: true
+        }
+    })
 
-    return new Post(data["title"], markdown, data["description"], data["author"], data["date"])
+    return new Post(frontmatter.title, content,
+        frontmatter.description, frontmatter.author, frontmatter.date)
 }
 
 export function getAllPostIdentifiers() {
